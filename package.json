@@ -1,0 +1,22 @@
+{
+  "name": "noise-wrangler-website",
+  "version": "0.0.1",
+  "description": "The website of sound artist Jean-Philippe Drecourt",
+  "author": "Jean-Philippe Drecourt",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint . && prettier --check . && stylelint '**/*.{css,scss}'",
+    "static": "cp src/robots.txt dist/robots.txt",
+    "start": "parcel && npm run static"
+  },
+  "source": [
+    "./src/index.html"
+  ],
+  "devDependencies": {
+    "eslint": "latest",
+    "prettier": "latest",
+    "stylelint": "latest",
+    "parcel": "latest",
+    "stylelint-config-standard": "latest"
+  }
+}
