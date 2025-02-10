@@ -27,4 +27,23 @@
     ],
     "description": "The People & Code HTML page template",
   },
+  "Noise Wrangler Article": {
+    "prefix": "nw-article",
+    "body": [
+      "<article data-featured=\"true\">",
+      "    <h2>Article Title</h2>",
+      "    <div class=\"article-meta\">",
+      "        <time datetime=\"2025-02-10\">February 10, 2025</time>",
+      "    </div>",
+      "    <div class=\"article-featured\">",
+      "        <img src=\"/images/article1-featured.jpg\" alt=\"Description\" />",
+      "        <p class=\"featured-excerpt\">Article excerpt...</p>",
+      "    </div>",
+      "    <div class=\"article-content\">",
+      "        <p>Full content...</p>",
+      "    </div>",
+      "</article>",
+    ],
+    "description": "Noise Wrangler Article",
+  },
 }

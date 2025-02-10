@@ -7,16 +7,11 @@
       name="description"
       content="The website of sound artist Jean-Philippe Drecourt"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <title>Noise Wrangler</title>
   </head>
   <body class="body">
     <header>
-      <p>
-        <a href="#main" tabindex="0" class="local"
-          >Jump link to the main content</a
-        >
-      </p>
       <div id="title">
         <img
           id="logo"
@@ -29,11 +24,18 @@
         </div>
       </div>
     </header>
-    <main id="main" class="main"></main>
-    <footer id="footer">
-      <nav aria-label="Primary">
-        <a href="sitemap.html" class="local">Human-readable sitemap</a>
-      </nav>
-    </footer>
+    <section id="featured" class="featured-articles">
+      <!-- Featured articles will be loaded here -->
+    </section>
+
+    <section class="articles-section">
+      <h2 class="section-title">Latest Articles</h2>
+      <main id="content">
+        <!-- Regular articles will be loaded here -->
+      </main>
+    </section>
+
+    <div id="loading" class="loading">Loading more posts...</div>
+    <script src="js/main.js"></script>
   </body>
 </html>
