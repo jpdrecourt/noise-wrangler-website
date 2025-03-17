@@ -80,6 +80,10 @@ h2 {
   object-fit: cover;
 }
 
+.article-content {
+  padding: 0 1.5rem;
+}
+
 .article-content h3 {
   margin-bottom: 0.5rem;
   font-size: 1.15rem;
