@@ -4,7 +4,7 @@ const ARTICLES_PER_BATCH = 9
 let loading = false
 let hasMore = true
 let cachedArticlesList = null
-const articlesDirectory = './articles/'
+const articlesDirectory = './docs/articles/'
 
 // Initialize Intersection Observer for lazy loading
 const observer = new IntersectionObserver(
