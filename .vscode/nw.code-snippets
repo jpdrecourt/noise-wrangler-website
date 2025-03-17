@@ -33,7 +33,7 @@
       "    <h2>${2:Article Title}</h2>",
       "    <!-- Featured image and excerpt (used for article cards) -->",
       "    <div class=\"article-featured\">",
-      "      <img src=\"${5:/path/to/image/from/docs.jpg}\" alt=\"${6:Description of image}\" />",
+      "      <img src=\"${5:/path/to/image/from/articles.jpg}\" alt=\"${6:Description of image}\" />",
       "      <p class=\"featured-excerpt\">",
       "        ${7:A brief description that will appear on the article card.}",
       "      </p>",
