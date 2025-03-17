@@ -5,18 +5,15 @@
   "author": "Jean-Philippe Drecourt",
   "type": "module",
   "scripts": {
-    "lint": "eslint . && prettier --check . && stylelint '**/*.{css,scss}'",
-    "static": "cp src/robots.txt dist/robots.txt",
-    "start": "parcel && npm run static"
+    "lint": "eslint . && prettier --check . && stylelint '**/*.{css,scss}'"
   },
   "source": [
-    "./src/index.html"
+    "./docs/index.html"
   ],
   "devDependencies": {
     "eslint": "latest",
     "prettier": "latest",
     "stylelint": "latest",
-    "parcel": "latest",
     "stylelint-config-standard": "latest"
   }
 }

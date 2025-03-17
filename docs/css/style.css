@@ -11,7 +11,7 @@ body {
     -apple-system,
     sans-serif;
   line-height: 1.6;
-  max-width: 1200px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
   color: #333;
@@ -21,6 +21,15 @@ body {
 header {
   margin-bottom: 4rem;
   text-align: center;
+}
+
+p {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+h2 {
+  font-size: 2rem;
 }
 
 #title {
@@ -71,19 +80,32 @@ header {
   object-fit: cover;
 }
 
-.article-content {
-  padding: 1.5rem;
-}
-
 .article-content h3 {
   margin-bottom: 0.5rem;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
 }
 
 .article-description {
   color: #666;
   font-size: 0.95rem;
   margin-bottom: 1rem;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  margin-bottom: 1.5rem;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
 }
 
 /* Footer styles */
@@ -122,24 +144,15 @@ header {
   text-decoration: underline;
 }
 
-.footer-copyright {
+.footer-copyright p {
   font-size: 0.85rem;
   color: #888;
   text-align: center;
 }
 
 /* Article page specific styles */
-.article-featured img {
-  max-width: 100%;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-}
-
-.article-featured .featured-excerpt {
-  font-size: 1.1rem;
-  color: #555;
-  margin-bottom: 2rem;
-  font-style: italic;
+.article-featured {
+  display: none;
 }
 
 /* Loading indicator */
@@ -164,9 +177,5 @@ header {
 
   .article-card {
     max-width: 100%;
-  }
-
-  .article-content {
-    padding: 1rem;
   }
 }
