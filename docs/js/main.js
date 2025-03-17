@@ -76,10 +76,10 @@ function createArticleCard(title, date, imageUrl, description, articleUrl) {
   const imgSrc = imageUrl || './media/NW-Logo-No_Border-800px.png'
 
   card.innerHTML = `
-    <img class="article-image" src="${imgSrc}" alt="${title}" loading="lazy" />
-    <div class="article-content">
+    <img class="card-image" src="${imgSrc}" alt="${title}" loading="lazy" />
+    <div class="card-content">
       <h3>${title}</h3>
-      <p class="article-description">${description}</p>
+      <p class="card-description">${description}</p>
     </div>
   `
 

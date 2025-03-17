@@ -85,4 +85,34 @@
     "description": "Date YYYYMMDD",
     "body": ["$CURRENT_YEAR$CURRENT_MONTH$CURRENT_DATE"],
   },
+  "Media Container for Image": {
+    "prefix": "nw-media-img",
+    "body": [
+      "<div class=\"media-container\">",
+      "  <img src=\"image.jpg\" alt=\"Description\">",
+      "  <div class=\"media-caption\">Caption text</div>",
+      "</div>",
+    ],
+    "description": "Media Container for Image",
+  },
+  "Media Container for Video": {
+    "prefix": "nw-media-video",
+    "body": [
+      "<div class=\"media-container\">",
+      "  <div class=\"video-wrapper\">",
+      "    <iframe src=\"https://www.youtube.com/embed/VIDEO_ID\" allowfullscreen></iframe>",
+      "  </div>",
+      "</div>",
+    ],
+    "description": "Media Container for Video",
+  },
+  "Media Container for Audio": {
+    "prefix": "nw-media-audio",
+    "body": [
+      "<div class=\"media-container\">",
+      "  <audio controls src=\"audio.mp3\"></audio>",
+      "</div>",
+    ],
+    "description": "Media Container for Audio",
+  },
 }
