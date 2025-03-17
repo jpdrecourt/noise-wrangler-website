@@ -3,8 +3,8 @@ let loadedArticles = 0
 const ARTICLES_PER_BATCH = 9
 let loading = false
 let hasMore = true
-let cachedArticlesList = null
 const articlesDirectory = 'articles/'
+let articleFilenames = []
 
 // Initialize Intersection Observer for lazy loading
 const observer = new IntersectionObserver(
@@ -21,39 +21,48 @@ const observer = new IntersectionObserver(
   }
 )
 
-// Observe loading indicator
-document.addEventListener('DOMContentLoaded', () => {
+// Observe loading indicator and load articles list
+document.addEventListener('DOMContentLoaded', async () => {
   observer.observe(document.getElementById('loading'))
+
+  // Load the article filenames
+  await loadArticlesList()
+
+  // Start loading articles
   loadNextBatch()
 })
 
-// Get the list of articles from the articles directory
-async function getAllArticles() {
-  if (cachedArticlesList) return cachedArticlesList
-
+// Load articles list from external file
+async function loadArticlesList() {
   try {
-    // List all files in the articles directory
-    const articles = await fetch(articlesDirectory)
-      .then((response) => response.text())
-      .then((html) => {
-        const parser = new DOMParser()
-        const doc = parser.parseFromString(html, 'text/html')
+    // Check if it's already loaded via the script tag
+    if (window.articleFilenames && window.articleFilenames.length > 0) {
+      articleFilenames = window.articleFilenames
+      return
+    }
 
-        // Get all links that match our article pattern
-        const links = Array.from(doc.querySelectorAll('a'))
-          .map((a) => a.href)
-          .filter((href) => /\d{4}-\d{2}-\d{2}.*\.html$/.test(href))
-          .map((href) => href.split('/').pop())
+    // Otherwise try to fetch it
+    const response = await fetch('articles-list.js')
+    if (!response.ok) {
+      throw new Error(`Failed to load articles list: ${response.status}`)
+    }
 
-        // Sort by date (newest first)
-        return links.sort().reverse()
-      })
+    const script = document.createElement('script')
+    script.textContent = await response.text()
+    document.head.appendChild(script)
 
-    cachedArticlesList = articles
-    return articles
+    // Wait a moment for the script to execute
+    await new Promise((resolve) => setTimeout(resolve, 100))
+
+    if (window.articleFilenames) {
+      articleFilenames = window.articleFilenames
+    } else {
+      throw new Error('Articles list not found in loaded script')
+    }
   } catch (error) {
-    console.error('Error fetching articles:', error)
-    return []
+    console.error('Error loading articles list:', error)
+    document.getElementById('loading').textContent =
+      'Could not load articles. Please try again later.'
   }
 }
 
@@ -126,14 +135,13 @@ function extractImage(articleContent) {
 
 // Load next batch of articles
 async function loadNextBatch() {
-  if (loading || !hasMore) return
+  if (loading || !hasMore || articleFilenames.length === 0) return
   loading = true
   const loadingIndicator = document.getElementById('loading')
   loadingIndicator.style.display = 'block'
 
   try {
-    const articlesList = await getAllArticles()
-    const batch = articlesList.slice(
+    const batch = articleFilenames.slice(
       loadedArticles,
       loadedArticles + ARTICLES_PER_BATCH
     )
@@ -148,38 +156,45 @@ async function loadNextBatch() {
     // Load each article in the batch
     const articlesGrid = document.getElementById('articles-grid')
     for (const articleFile of batch) {
-      const response = await fetch(`${articlesDirectory}${articleFile}`)
-      if (!response.ok) continue
+      try {
+        const response = await fetch(`${articlesDirectory}${articleFile}`)
+        if (!response.ok) {
+          console.warn(`Could not load article: ${articleFile}`)
+          continue
+        }
 
-      const html = await response.text()
-      const tempDiv = document.createElement('div')
-      tempDiv.innerHTML = html
+        const html = await response.text()
+        const tempDiv = document.createElement('div')
+        tempDiv.innerHTML = html
 
-      const article = tempDiv.querySelector('article')
-      if (!article) continue
+        const article = tempDiv.querySelector('article')
+        if (!article) continue
 
-      const title = article.querySelector('h2')?.textContent || 'Untitled'
-      const dateEl = article.querySelector('time')
-      const date = dateEl ? dateEl.textContent : ''
+        const title = article.querySelector('h2')?.textContent || 'Untitled'
+        const dateEl = article.querySelector('time')
+        const date = dateEl ? dateEl.textContent : ''
 
-      const imageUrl = extractImage(article)
-      const description = extractDescription(article)
+        const imageUrl = extractImage(article)
+        const description = extractDescription(article)
 
-      const articleCard = createArticleCard(
-        title,
-        date,
-        imageUrl,
-        description,
-        `${articlesDirectory}${articleFile}`
-      )
+        const articleCard = createArticleCard(
+          title,
+          date,
+          imageUrl,
+          description,
+          `${articlesDirectory}${articleFile}`
+        )
 
-      articlesGrid.appendChild(articleCard)
+        articlesGrid.appendChild(articleCard)
+      } catch (error) {
+        console.error(`Error loading article ${articleFile}:`, error)
+      }
     }
 
     loadedArticles += batch.length
 
     // Check if this was the last batch
-    if (loadedArticles >= articlesList.length) {
+    if (loadedArticles >= articleFilenames.length) {
       hasMore = false
       loadingIndicator.style.display = 'none'
       observer.disconnect()
