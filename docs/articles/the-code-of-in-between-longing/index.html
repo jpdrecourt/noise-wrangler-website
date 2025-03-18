@@ -37,8 +37,320 @@
         </p>
       </div>
       <div class="article-content">
-        <p>Full article content goes here...</p>
-        <!-- Rest of the article content -->
+        <p>
+          This is a short analysis of the interesting elements of the
+          SuperCollider code of <em>In-between, longing</em>. The full code is
+          available at <a href="https://sccode.org/1-5e7">sccode.org</a>.
+          Unfortunately, I can’t provide the sound files, as they are
+          copyrighted. But I hope that this analysis will give you some ideas
+          that you can reuse in your own project.
+        </p>
+        <div class="media-container">
+          <iframe
+            style="border: 0; width: 100%; height: 120px"
+            src="https://bandcamp.com/EmbeddedPlayer/album=1707069174/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/transparent=true/"
+            seamless
+            title="In-between, longing"
+            ><a
+              href="https://jpdrecourt.bandcamp.com/album/in-between-longing-seed-0262"
+              >In-between, longing (seed 0262) by Jean-Philippe Drécourt</a
+            ></iframe
+          >
+        </div>
+        <p>
+          The code below is edited for clarity. If there’s a function/synth
+          that’s not defined here, it’s just a helper function. And if you’re
+          really curious, you can search for it in the full code.
+        </p>
+        <h3>Variables</h3>
+        <p>
+          Variables are stored in nested dictionaries, with single letter
+          variable for basic types. This allows for bulk actions (especially on
+          patterns), and reduces the need for explicit declaration (naughty but
+          faster!).
+        </p>
+        <pre><code>v = (); // Variables
+f = (); // Functions
+p = (); // Patterns
+b = (); // Busses
+c = (); // Buffers
+g = (); // Groups
+i = (); // Synth (instruments)
+</code></pre>
+        <h3>Garbage Collection</h3>
+        <p>
+          The project is built on almost 1500 different sound files. I
+          originally wanted to run it on a RasperyPi, so I needed to save memory
+          and computing power. Therefore I wanted to only load the files as I
+          used them.
+        </p>
+        <p>
+          For this, I devised a simple garbage collection system that would free
+          the buffers a given amount of time after they’ve been used.
+        </p>
+        <pre><code>// 20 seconds delay for garbage collection 
+v[\garbageDelta] = 20; 
+// Garbage collection function 
+f[\toGarbage] = {|buffer, delta = (v[\garbageDelta])| 
+    AppClock.sched(delta, { 
+    buffer.free; }); 
+}; 
+/* Load a buffer into b[\sound] and use it */ 
+// Free the buffer in 20 seconds
+// Make sure to run this after the pattern has finished using the buffer
+f[\toGarbage].(b[\sound]);
+</code></pre>
+        <h3>Mixer</h3>
+
+        <h4>Basic Structure</h4>
+
+        <p>
+          Given the complexity of the project, I needed to be able to easily
+          change the mix of the various channels before committing to the final
+          version. I tried to use the dewdrop
+          <a href="http://www.dewdrop-world.net/sc3/tutorials/index.php?id=1"
+            >MixerChannel</a
+          >
+          class, but it was too computationally intense for the project.
+        </p>
+        <p>
+          Instead I created a ProxySpace and used the built-in visual mixer.
+        </p>
+        <pre><code>// Create the mixer ProxySpace 
+m = ProxySpace.new; 
+// Visual mixer specs
+//// Pan width 
+Spec.add(\width, ControlSpec(0.0, 1.0, default: 1.0));
+//// Send gain
+Spec.add(mix, ControlSpec(0, 6.dbamp, \amp, 0, 1.0));
+//// Volume 
+Spec.add(\amp, ControlSpec(0, 6.dbamp, \amp, 0, 1.0)); //
+// Display the visual mixer 
+v[\mixer] = ProxyMixer(m);
+ProxyMeter.addMixer(v[\mixer]); 
+CmdPeriod.doOnce({ 
+    v[\mixer].close
+});
+</code></pre>
+        <p>
+          In the <code>ProxySpace</code>, each NodeProxy is a channel, with the
+          following convention:
+        </p>
+        <pre><code>// Send effects: m[\c00] to m[\c09] (max 10)
+// Channels: m[\c10] to m[\c99] (max 90)
+</code></pre>
+        <p>
+          While the code of the mixer is a bit complex (see below), the use is
+          more or less transparent. Each channel has a group, (e.g.
+          <code>g[\c10]</code>) where to put all the synths of that channel, and
+          a bus (e.g. <code>b[\c10]</code>) that is properly routed to the
+          respective <code>NodeProxy</code>.
+        </p>
+        <p>
+          Each channel has a pan/width functionnality using <code>Splay</code>.
+        </p>
+        <pre><code>v[\nChannels] = 15;
+v[\nSends] = 4;
+b[\master] = 0;
+b[\send] = ();
+// Channels
+v[\nChannels].do { |i|
+    // Format the channel name into \cxx
+    var ch = f[\cKey].(i + 10);
+    // Create wrapper groups and bus for the NodeProxy
+    var chWrapper = (ch ++ "Wrap").asSymbol;
+    b[chWrapper] = Bus.audio(s, 2);
+    g[chWrapper] = Group.new;
+    // Bus where to route the audio of the instrument
+    b[ch] = Bus.audio(s, 2);
+    // Send the bus to the master bus
+    Synth.tail(g[chWrapper], \route2, [\in, b[chWrapper], \out, b[\master]]);
+    // Create the NodeProxy
+    m[ch].play(out: b[chWrapper], numChannels: 2, group: g[chWrapper], addAction: \addToHead);
+    // Create the channel and play on its private bus
+    m[ch].source_({|pan = 0.0, width = 1.0|
+        // Pan/Width
+        var thewidth = width.min(1 - pan.abs);
+        var sig = In.ar(b[ch], 2);
+        Splay.ar(sig, thewidth, 1, pan);
+    });
+    // Group where to insert the instrument
+    g[ch] = Group.new(g[chWrapper], \addToHead);
+};
+</code></pre>
+        <p>
+          For the send effects, I use the \mix NodeProxy role to receive each
+          mixer channel. I can then use the default control mix++index to change
+          the send amount:
+        </p>
+        <pre><code>// Setting channel 18 send 3 to 0.68
+m[\c03].set('mix18', 0.68);
+</code></pre>
+
+        <h4>Pattern Routing</h4>
+        <p>
+          With this approach, routing a pattern (or a synth) to a given channel
+          is a simple assignment of the out and group keywords in a
+          <code>Pbind</code>. For example:
+        </p>
+        <pre><code>// Route p[consonants] to channel \c22
+p[\consonants] = p[\consonants] <> (group: g[\c22], out: b[\c22]);
+</code></pre>
+
+        <h3>FX</h3>
+        <h4>FX Function</h4>
+        <p>
+          I use a simple SynthDef wrapper so that all FX have amp and wet
+          parameters. The call to the function is illustrated in the FX example
+          below.
+        </p>
+        <pre><code>// FX generator
+f[\makeFx] = {|name, func|
+    SynthDef(name, {|out = 0, amp = 1.0, wet = 1.0|
+        var sig = In.ar(out, 2);
+        sig = ((1 - wet)*sig) + (wet*SynthDef.wrap(func, prependArgs: [sig]));
+        ReplaceOut.ar(out, sig*amp);
+    }).add;
+};
+</code></pre>
+
+        <h4>Theta Wave Distorsion</h4>
+        <p>
+          Inspired by
+          <a
+            href="https://blog.native-instruments.com/telefon-tel-aviv-interview/"
+            >Telefon Tel Aviv</a
+          >, it creates a pulsating feeling without altering the quality of the
+          sound itself. It’s triggered randomly about every minute and lasts
+          between 3 and 10 seconds, with a pulse frequency (freq) varying
+          between 3 and 7 Hz.
+        </p>
+        <pre><code>// Theta wave distortion
+f[\makeFx].(\thetaDistortFx, {|sig, freq = 6.0, preAmp = 0.5|
+    // Low frequency pulsation
+    var oldSig, control = SinOsc.ar(freq, 0.0, preAmp);
+    oldSig = sig;
+    // Sidechain compression using the low frequency pulsation
+    sig = Compander.ar(sig, control, 0.9, 1.0, 0.0, 0.001, 0.001);
+    // Automatic gain compensation
+    sig = Balance.ar(sig, oldSig);
+    sig
+});
+</code></pre>
+        <h4>Morphing Convolution Reverb</h4>
+        <p>
+          I wanted the feel of the space to evolve through the piece, but I
+          wasn’t satisfied with the algorithmic reverbs. Then I discovered
+          <code>PartConv</code>, SC’s hidden convolution reverb (at least for me
+          until now). Since it only uses mono IR, I faked stereo using a simple
+          Haas effect, depending on the size of the space modelled by the IR.
+          The <code>irSpectrum</code> buffer is created using the code in the
+          help file.
+        </p>
+        <pre><code>// Convolution reverb with mono IR, and Haas delay to give a sense of space
+f[\makeFx].(\convRevFx8192, {|sig, irSpectrum, mul, haas|
+    // Convolution reverb with mono
+    sig = PartConv.ar(sig, 8192, irSpectrum, mul);
+    sig[1] = DelayN.ar(sig[1], haas, haas);
+    sig
+});
+</code></pre>
+
+        <p>
+          The main issue with <code>PartConv</code> is the normalisation factor
+          (<code>mul</code>). Because I was morphing between different reverbs,
+          I needed them to have the same amplitude. To solve that problem, I
+          measured the maximum RMS using the <code>RMS</code> UGen from the SC3
+          extension and used a <code>mul</code> that kept it at around 0.9 for
+          all my IR.
+        </p>
+        <p>
+          Convolution reverb is a costly process so I didn’t want the 6 reverb
+          to run all the time. Instead I used two send channels (<code
+            >c01</code
+          >
+          and c02) alternatively. While one was playing a
+          <code>\convRevFx8192</code> synth, the other one was silent and I
+          could change the synth. All is managed by a small pattern.
+        </p>
+        <pre><code>// Refresh the impulse response of the quiet send channel
+p[\switchReverb] = Pbind(
+    \amp, Rest(),
+    // Impulse responses names
+    \ir, Pseq([\UEMT, \Tower, \Tight, \Arundel, \Underwater, \Demon], inf),
+    // Channel to refresh
+    \target, Pseq([\c01, \c02], inf),
+    // Refresh the reverb at half time before a reverb change
+    \delta, Pseq([Pfuncn {v[\reverbChange]/2}, Pfunc {v[\reverbChange]}]),
+    \callback, {
+        // Free the current reverb from the silent channel
+        i[~target].free;
+        // Create the new reverb (with a helper function)
+        i[~target] = f[\convSetup].(~ir, ~target, 0.0);
+        // Map the amp parameter of the FX for fade in/out
+        i[~target].map(\amp, b[(~target ++ \Amp).asSymbol]);
+    },
+); 
+</code></pre>
+
+        <h3>Sequencing The Parts</h3>
+
+        <p>The piece is composed of three types of voice events:</p>
+
+        <ul>
+          <li>A random narration (<code>\story</code>) ;</li>
+          <li>
+            5 different specific events diving into important topics of the
+            story (<code
+              >[\ands, \incredible, \remember, \colours, \intimacy]</code
+            >) ;
+          </li>
+          <li>
+            And a silent part where only the background sounds are heard
+            (<code>\silence</code>).
+          </li>
+        </ul>
+        <p>
+          A <code>\story</code> event is inserted in between each of the
+          specific topic (e.g. <code>\story</code>, <code>\ands</code>,
+          <code>\story</code>, <code>\incredible</code>, <code>\story</code>,
+          <code>\remember</code>, ...), and a <code>\silence</code> event is
+          inserted at random without breaking the order of the other events. To
+          obtain this, I used a <code>Prout</code> that returned the name of the
+          event insde a <code>Pbind</code>. The advantage of the
+          <code>Prout</code> is that you can return a value in the middle of the
+          execution without loosing your posit\silence allows me to randomly
+          return a <code>\silence</code> event without messing up the rest of
+          the chronology.
+        </p>
+        <pre><code>Prout({
+    // Non silent events organised in two sub-arrays
+    // One for \story
+    // One for the specific events
+    var parts = [[\story], [\ands, \incredible, \remember, \colours, \intimacy]];
+    loop {
+        // Either yield \story (since it's alone in its sub-array) 
+        // or the first specific event in the subarray
+        parts[0][0].yield;
+        // If parts[0] is [\story], nothing happens
+        // If it's the array of the specific events, rotate it to change parts[0][0]
+        parts[0] = parts[0].rotate;
+        // Alternate between [\story] and the specific events in parts[0]
+        parts = parts.rotate;
+        // Randomly add a \silent event with a 20% probability
+        0.2.coin.if {\silence.yield}
+    }
+})
+</code></pre>
+
+        <h3>Conclusion</h3>
+        <p>
+          I hope this very short exploration of the code of In-between, longing
+          gave you some interesting ideas to insert into your own creations.
+          There’s plenty more to cover, but these bits are the ones I think can
+          be useful in other creations. In any case, if you have any questions,
+          feel free to reach out.
+        </p>
       </div>
     </article>
 
