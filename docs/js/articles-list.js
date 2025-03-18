@@ -1,11 +1,13 @@
-// List of article filenames in chronological order (newest first)
+// List of article folder names in chronological order (newest first)
 const articles = [
   // Add more articles here as they're created
-  'electroacoustic_studies.html',
-  'beat_vox.html',
-  'tap_the_rain.html',
-  'ind_ud.html',
+  'the-code-of-in-between-longing',
+  'in-between-longing',
+  'electroacoustic-studies',
+  'beat-vox',
+  'tap-the-rain',
+  'ind-ud',
 ]
 
 // Make the array available globally
-window.articleFilenames = articles
+window.articleFolders = articles

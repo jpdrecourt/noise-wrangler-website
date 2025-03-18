@@ -4,7 +4,7 @@ const ARTICLES_PER_BATCH = 9
 let loading = false
 let hasMore = true
 const articlesDirectory = 'articles/'
-let articleFilenames = []
+let articleFolders = []
 
 // Initialize Intersection Observer for lazy loading
 const observer = new IntersectionObserver(
@@ -25,7 +25,7 @@ const observer = new IntersectionObserver(
 document.addEventListener('DOMContentLoaded', async () => {
   observer.observe(document.getElementById('loading'))
 
-  // Load the article filenames
+  // Load the article folders
   await loadArticlesList()
 
   // Start loading articles
@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 async function loadArticlesList() {
   try {
     // Check if it's already loaded via the script tag
-    if (window.articleFilenames && window.articleFilenames.length > 0) {
-      articleFilenames = window.articleFilenames
+    if (window.articleFolders && window.articleFolders.length > 0) {
+      articleFolders = window.articleFolders
       return
     }
 
@@ -54,8 +54,8 @@ async function loadArticlesList() {
     // Wait a moment for the script to execute
     await new Promise((resolve) => setTimeout(resolve, 100))
 
-    if (window.articleFilenames) {
-      articleFilenames = window.articleFilenames
+    if (window.articleFolders) {
+      articleFolders = window.articleFolders
     } else {
       throw new Error('Articles list not found in loaded script')
     }
@@ -135,13 +135,13 @@ function extractImage(articleContent) {
 
 // Load next batch of articles
 async function loadNextBatch() {
-  if (loading || !hasMore || articleFilenames.length === 0) return
+  if (loading || !hasMore || articleFolders.length === 0) return
   loading = true
   const loadingIndicator = document.getElementById('loading')
   loadingIndicator.style.display = 'block'
 
   try {
-    const batch = articleFilenames.slice(
+    const batch = articleFolders.slice(
       loadedArticles,
       loadedArticles + ARTICLES_PER_BATCH
     )
@@ -155,11 +155,13 @@ async function loadNextBatch() {
 
     // Load each article in the batch
     const articlesGrid = document.getElementById('articles-grid')
-    for (const articleFile of batch) {
+    for (const articleFolder of batch) {
       try {
-        const response = await fetch(`${articlesDirectory}${articleFile}`)
+        const response = await fetch(
+          `${articlesDirectory}${articleFolder}/index.html`
+        )
         if (!response.ok) {
-          console.warn(`Could not load article: ${articleFile}`)
+          console.warn(`Could not load article: ${articleFolder}`)
           continue
         }
 
@@ -182,19 +184,19 @@ async function loadNextBatch() {
           date,
           imageUrl,
           description,
-          `${articlesDirectory}${articleFile}`
+          `${articlesDirectory}${articleFolder}/`
         )
 
         articlesGrid.appendChild(articleCard)
       } catch (error) {
-        console.error(`Error loading article ${articleFile}:`, error)
+        console.error(`Error loading article ${articleFolder}:`, error)
       }
     }
 
     loadedArticles += batch.length
 
     // Check if this was the last batch
-    if (loadedArticles >= articleFilenames.length) {
+    if (loadedArticles >= articleFolders.length) {
       hasMore = false
       loadingIndicator.style.display = 'none'
       observer.disconnect()
