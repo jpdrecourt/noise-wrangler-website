@@ -1,6 +1,7 @@
 // List of article folder names in chronological order (newest first)
 const articles = [
   // Add more articles here as they're created
+  'sounds-family',
   'achtung-bitte',
   'o-refugio',
   'beached-thunder',
