@@ -3,6 +3,7 @@ const articles = [
   // Add more articles here as they're created
   'noise-wranglings',
   'soundshots',
+  'alien-eavesdrop',
   'sounds-family',
   'o-refugio',
   'beached-thunder',
