@@ -1,6 +1,7 @@
 // List of article folder names in chronological order (newest first)
 const articles = [
   // Add more articles here as they're created
+  'barreiro-improvised',
   'noise-wranglings',
   'soundshots',
   'alien-eavesdrop',
