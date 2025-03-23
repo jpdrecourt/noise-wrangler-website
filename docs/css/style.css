@@ -241,6 +241,40 @@ h2 {
   border: 0;
 }
 
+.player-container {
+  color: #333;
+  max-width: 500px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 10%);
+  overflow: hidden;
+}
+
+.player-container .album-art {
+  width: 100%;
+  display: block;
+}
+
+.player-container .track-info {
+  padding: 15px;
+}
+
+.player-container .track-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 5px;
+}
+
+.player-container .audio-controls {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.player-container audio {
+  width: 100%;
+  height: 40px;
+}
+
 /* Caption styles */
 .media-caption {
   padding: 0.75rem;

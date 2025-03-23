@@ -162,4 +162,20 @@
     ],
     "description": "Photo gallery",
   },
+  "Audio Player": {
+    "prefix": "nw-audio-player",
+    "body": [
+      "<div class=\"player-container\">",
+      "  <img src=\"../../media/${1:soundshot.jpg}\" alt=\"${2:soundshot}\" class=\"album-art\">",
+      "  <div class=\"track-info\">",
+      "    <p class=\"track-title\">${3:Soundshot title}</p>",
+      "    <audio controls class=\"audio-controls\">",
+      "      <source src=\"../../media/${4:audio.mp3}\" type=\"audio/mpeg\">",
+      "      Your browser does not support the audio element.",
+      "    </audio>",
+      "  </div>",
+      "</div>",
+    ],
+    "description": "Audio Player",
+  },
 }
