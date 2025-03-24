@@ -86,16 +86,27 @@ function createArticleCard(title, date, imageUrl, description, articleUrl) {
   return card
 }
 
-// Extract a single sentence description from article content
-function extractDescription(articleContent, maxLength = 120) {
-  // Try to find a featured excerpt first
-  const excerptEl = articleContent.querySelector('.featured-excerpt')
+// Extract description from Open Graph meta tags or fallback to content
+function extractDescription(doc, maxLength = 120) {
+  // Try to find description in Open Graph meta tag
+  const ogDescription = doc.querySelector('meta[property="og:description"]')
+  if (ogDescription && ogDescription.getAttribute('content')) {
+    const content = ogDescription.getAttribute('content').trim()
+    return content.length <= maxLength
+      ? content
+      : content.substring(0, maxLength) + '...'
+  }
+
+  // Fallbacks if Open Graph tag is not available
+
+  // Try to find a featured excerpt
+  const excerptEl = doc.querySelector('.featured-excerpt')
   if (excerptEl) {
     return excerptEl.textContent.trim()
   }
 
   // Otherwise, get the first paragraph
-  const firstParagraph = articleContent.querySelector('.article-content p')
+  const firstParagraph = doc.querySelector('.article-content p')
   if (firstParagraph) {
     const text = firstParagraph.textContent.trim()
 
@@ -116,21 +127,44 @@ function extractDescription(articleContent, maxLength = 120) {
   return 'Read more...'
 }
 
-// Extract image from article
-function extractImage(articleContent) {
-  // Try to find a featured image first
-  const featuredImg = articleContent.querySelector('.article-featured img')
+// Extract image from Open Graph meta tags or fallback to article content
+function extractImage(doc) {
+  // Try to find image in Open Graph meta tag
+  const ogImage = doc.querySelector('meta[property="og:image"]')
+  if (ogImage && ogImage.getAttribute('content')) {
+    return ogImage.getAttribute('content')
+  }
+
+  // Fallbacks if Open Graph tag is not available
+
+  // Try to find a featured image
+  const featuredImg = doc.querySelector('.article-featured img')
   if (featuredImg && featuredImg.src) {
     return featuredImg.src
   }
 
   // Try to find any image in the article content
-  const contentImg = articleContent.querySelector('.article-content img')
+  const contentImg = doc.querySelector('.article-content img')
   if (contentImg && contentImg.src) {
     return contentImg.src
   }
 
   return null
+}
+
+// Extract title from Open Graph meta tags or fallback to content
+function extractTitle(doc) {
+  // Try to find title in Open Graph meta tag
+  const ogTitle = doc.querySelector('meta[property="og:title"]')
+  if (ogTitle && ogTitle.getAttribute('content')) {
+    return ogTitle
+      .getAttribute('content')
+      .replace(' - Noise Wrangler', '') // Remove site name if present
+      .trim()
+  }
+
+  // Fallback to article heading
+  return doc.querySelector('article h2')?.textContent || 'Untitled'
 }
 
 // Load next batch of articles
@@ -166,18 +200,15 @@ async function loadNextBatch() {
         }
 
         const html = await response.text()
-        const tempDiv = document.createElement('div')
-        tempDiv.innerHTML = html
+        const parser = new DOMParser()
+        const doc = parser.parseFromString(html, 'text/html')
 
-        const article = tempDiv.querySelector('article')
-        if (!article) continue
-
-        const title = article.querySelector('h2')?.textContent || 'Untitled'
-        const dateEl = article.querySelector('time')
+        const title = extractTitle(doc)
+        const dateEl = doc.querySelector('time')
         const date = dateEl ? dateEl.textContent : ''
 
-        const imageUrl = extractImage(article)
-        const description = extractDescription(article)
+        const imageUrl = extractImage(doc)
+        const description = extractDescription(doc)
 
         const articleCard = createArticleCard(
           title,
