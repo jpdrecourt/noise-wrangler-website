@@ -27,11 +27,14 @@ body {
 }
 
 /* Header styles for split design */
+
+/* Header styles for split design */
 header {
   margin-bottom: 4rem;
   position: relative;
   min-height: 350px;
   padding-top: 20px;
+  overflow: hidden; /* Prevent overflow issues on small screens */
 }
 
 header > a *,
@@ -58,6 +61,7 @@ header > a:active * {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  transition: all 0.3s ease; /* Smooth transition for resizing */
 }
 
 .header-block-diagram {
@@ -70,6 +74,7 @@ header > a:active * {
   overflow: hidden;
   border-radius: 8px;
   box-shadow: 0 3px 10px rgb(0 0 0 / 15%);
+  transition: all 0.3s ease; /* Smooth transition for repositioning */
 }
 
 .header-image {
@@ -79,6 +84,7 @@ header > a:active * {
   width: 66%;
   z-index: 2;
   height: 280px;
+  transition: all 0.3s ease; /* Smooth transition for repositioning */
 }
 
 .header-block-diagram img {
@@ -103,6 +109,7 @@ header > a:active * {
   width: 96px;
   height: 96px;
   margin-right: 1.25rem;
+  transition: all 0.3s ease; /* Smooth transition for resizing */
 }
 
 #title-text {
@@ -111,6 +118,7 @@ header > a:active * {
   margin-bottom: 0;
   font-size: 1.25rem;
   position: relative;
+  transition: font-size 0.3s ease; /* Smooth transition for font size changes */
 }
 
 #title-text h1 {
@@ -127,6 +135,182 @@ header > a:active * {
   bottom: 0;
   left: 0;
   background: linear-gradient(90deg, var(--fg-color), transparent);
+}
+
+/* Tablet breakpoint improvements */
+@media (width <= 900px) {
+  header {
+    min-height: 420px; /* Reduced from 480px for better proportion */
+  }
+
+  #title {
+    width: 90%; /* Increased from 100% to maintain some margin */
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+
+  .header-image {
+    width: 85%;
+    top: 180px; /* Adjusted from 190px */
+    right: 0;
+    height: 250px; /* Adjusted height for better proportion */
+  }
+
+  .header-block-diagram {
+    width: 180px; /* Increased from 160px */
+    height: 180px; /* Increased from 160px */
+    top: 170px; /* Adjusted from 130px */
+    left: 40px; /* Adjusted from 20px */
+    opacity: 0.9; /* Slightly increased opacity for better visibility */
+  }
+}
+
+/* Medium size mobile breakpoint */
+@media (width <= 768px) {
+  header {
+    min-height: 400px;
+  }
+
+  #title {
+    width: 95%;
+  }
+
+  .header-image {
+    width: 90%;
+    top: 170px;
+    height: 230px;
+  }
+
+  .header-block-diagram {
+    width: 150px;
+    height: 150px;
+    top: 170px;
+    left: 30px;
+  }
+
+  #logo {
+    width: 85px;
+    height: 85px;
+  }
+
+  #title-text {
+    font-size: 1.15rem;
+  }
+}
+
+/* Small mobile breakpoint - improved from original */
+@media (width <= 500px) {
+  header {
+    min-height: 380px; /* Adjusted height */
+  }
+
+  #title {
+    width: 100%;
+    padding: 0.85rem;
+    flex-direction: row; /* Keep logo and text side by side */
+    align-items: center;
+  }
+
+  #logo {
+    width: 75px;
+    height: 75px;
+    margin-right: 0.85rem;
+  }
+
+  #title-text {
+    font-size: 1.05rem;
+  }
+
+  #title-text h1 {
+    font-size: 1.5rem; /* Added explicit size for h1 */
+  }
+
+  .header-block-diagram {
+    width: 120px;
+    height: 120px;
+    top: 150px;
+    left: 15px;
+    opacity: 0.8; /* Reduced opacity to not compete with main image */
+  }
+
+  .header-image {
+    width: 85%;
+    top: 150px;
+    height: 220px;
+    right: 0;
+  }
+}
+
+/* Extra small devices */
+@media (width <= 375px) {
+  header {
+    min-height: 350px;
+  }
+
+  #title {
+    padding: 0.75rem;
+  }
+
+  #logo {
+    width: 65px;
+    height: 65px;
+    margin-right: 0.7rem;
+  }
+
+  #title-text {
+    font-size: 1rem;
+  }
+
+  #title-text h1 {
+    font-size: 1.4rem;
+  }
+
+  .header-block-diagram {
+    width: 100px;
+    height: 100px;
+    top: 140px;
+    left: 10px;
+  }
+
+  .header-image {
+    width: 85%;
+    top: 140px;
+    height: 200px;
+  }
+}
+
+/* Very small devices - improved layout */
+@media (width <= 320px) {
+  header {
+    min-height: 330px;
+  }
+
+  #title {
+    padding: 0.6rem;
+  }
+
+  #logo {
+    width: 60px;
+    height: 60px;
+    margin-right: 0.6rem;
+  }
+
+  #title-text h1 {
+    font-size: 1.3rem;
+  }
+
+  .header-block-diagram {
+    width: 90px;
+    height: 90px;
+    top: 130px;
+    left: 5px;
+  }
+
+  .header-image {
+    width: 88%;
+    top: 130px;
+    height: 180px;
+  }
 }
 
 p,
@@ -417,6 +601,10 @@ h2 {
   font-weight: 500;
 }
 
+.footer-copyright a {
+  color: #888;
+}
+
 .footer-social a:hover {
   color: #000;
   text-decoration: underline;
@@ -427,10 +615,6 @@ h2 {
   color: #888;
   text-align: center;
   margin-bottom: 0.2rem;
-}
-
-.footer-copyright a {
-  color: #888;
 }
 
 /* Article page specific styles */
@@ -444,73 +628,4 @@ h2 {
   padding: 2rem;
   color: #666;
   display: none;
-}
-
-/* Single breakpoint for all screens below 900px */
-@media (width <= 900px) {
-  header {
-    min-height: 480px;
-  }
-
-  #title {
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 0;
-  }
-
-  .header-image {
-    width: 90%;
-    top: 190px;
-    right: 0;
-  }
-
-  .header-block-diagram {
-    width: 160px;
-    height: 160px;
-    top: 130px;
-    left: 20px;
-  }
-}
-
-/* Adjustments for very small screens */
-@media (width <= 500px) {
-  #title {
-    padding: 0.75rem;
-  }
-
-  #logo {
-    width: 80px;
-    height: 80px;
-    margin-right: 0.75rem;
-  }
-
-  #title-text {
-    font-size: 1.1rem;
-  }
-
-  .header-block-diagram {
-    display: none;
-  }
-
-  .header-image {
-    width: 85%;
-    height: 230px;
-  }
-}
-
-/* Further adjustments for extremely small screens */
-@media (width <= 350px) {
-  header {
-    min-height: 430px;
-  }
-
-  #logo {
-    width: 70px;
-    height: 70px;
-  }
-
-  .header-image {
-    top: 170px;
-    height: 200px;
-  }
 }
