@@ -6,6 +6,24 @@
     <meta name="description" content="Code analysis for In-between, longing" />
     <link rel="stylesheet" href="../../css/style.css" />
     <title>The Code of In-between, longing - Noise Wrangler</title>
+    <meta
+      property="og:title"
+      content="The Code of In-between, longing - Noise Wrangler"
+    />
+    <meta
+      property="og:description"
+      content='Analysis of the code of the piece "In-between, longing."'
+    />
+    <meta
+      property="og:image"
+      content="https://noisewrangler.art/media/code-of-in-between-longing-cover.jpg"
+    />
+    <meta
+      property="og:url"
+      content="https://noisewrangler.art/articles/the-code-of-in-between-longing/"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Noise Wrangler" />
   </head>
   <body class="body">
     <header>
@@ -39,16 +57,7 @@
 
     <article>
       <h2>The Code of In-between, longing</h2>
-      <!-- Featured image and excerpt (used for article cards) -->
-      <div class="article-featured">
-        <img
-          src="./media/code-of-in-between-longing-cover.jpg"
-          alt="album cover, neverending spiral"
-        />
-        <p class="featured-excerpt">
-          Analysis of the code of the piece "In-between, longing."
-        </p>
-      </div>
+
       <div class="article-content">
         <p>
           This is a short analysis of the interesting elements of the
@@ -62,7 +71,7 @@
           <iframe
             style="border: 0; width: 100%; height: 120px"
             src="https://bandcamp.com/EmbeddedPlayer/album=1707069174/size=large/bgcol=ffffff/linkcol=000000/tracklist=false/artwork=small/transparent=true/"
-            seamless
+            seamless=""
             title="In-between, longing"
             ><a
               href="https://jpdrecourt.bandcamp.com/album/in-between-longing-seed-0262"
@@ -207,7 +216,7 @@ m[\c03].set('mix18', 0.68);
           <code>Pbind</code>. For example:
         </p>
         <pre><code>// Route p[consonants] to channel \c22
-p[\consonants] = p[\consonants] <> (group: g[\c22], out: b[\c22]);
+p[\consonants] = p[\consonants] &lt;&gt; (group: g[\c22], out: b[\c22]);
 </code></pre>
 
         <h3>FX</h3>
@@ -395,7 +404,7 @@ p[\switchReverb] = Pbind(
         </div>
       </div>
       <div class="footer-copyright">
-        <p>&copy; 2025 Jean-Philippe Drecourt. All rights reserved.</p>
+        <p>© 2025 Jean-Philippe Drecourt. All rights reserved.</p>
         <p>
           Header image by
           <a href="https://v-miopia.blogspot.com/">Vera Marmelo</a>

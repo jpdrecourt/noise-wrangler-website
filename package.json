@@ -5,7 +5,8 @@
   "author": "Jean-Philippe Drecourt",
   "type": "module",
   "scripts": {
-    "lint": "eslint . && prettier --check . && stylelint '**/*.{css,scss}'"
+    "lint": "eslint . && prettier --check . && stylelint '**/*.{css,scss}'",
+    "prettier": "prettier --write ."
   },
   "source": [
     "./docs/index.html"
@@ -15,5 +16,8 @@
     "prettier": "latest",
     "stylelint": "latest",
     "stylelint-config-standard": "latest"
+  },
+  "dependencies": {
+    "jsdom": "^26.0.0"
   }
 }
