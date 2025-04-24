@@ -64,6 +64,14 @@ header > a:active * {
   transition: all 0.3s ease; /* Smooth transition for resizing */
 }
 
+.byline {
+  gap: 0.3em; /* Space between the spans */
+}
+
+.by-name {
+  white-space: nowrap; /* Keep "by Jean-Philippe Drecourt" together */
+}
+
 .header-block-diagram {
   position: absolute;
   top: 110px;
