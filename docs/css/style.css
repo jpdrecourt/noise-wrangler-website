@@ -30,11 +30,21 @@ body {
 
 /* Header styles for split design */
 header {
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   position: relative;
-  min-height: 350px;
+  overflow: visible;
+}
+
+.header-content::after {
+  content: '';
+  display: block;
+  clear: both;
+  height: 360px;
+}
+
+.header-content {
+  position: relative;
   padding-top: 20px;
-  overflow: hidden; /* Prevent overflow issues on small screens */
 }
 
 header > a *,
@@ -147,8 +157,8 @@ header > a:active * {
 
 /* Tablet breakpoint improvements */
 @media (width <= 900px) {
-  header {
-    min-height: 420px; /* Reduced from 480px for better proportion */
+  .header-content::after {
+    height: 430px;
   }
 
   #title {
@@ -175,8 +185,8 @@ header > a:active * {
 
 /* Medium size mobile breakpoint */
 @media (width <= 768px) {
-  header {
-    min-height: 400px;
+  .header-content::after {
+    height: 400px;
   }
 
   #title {
@@ -208,8 +218,8 @@ header > a:active * {
 
 /* Small mobile breakpoint - improved from original */
 @media (width <= 500px) {
-  header {
-    min-height: 380px; /* Adjusted height */
+  .header-content::after {
+    height: 370px;
   }
 
   #title {
@@ -251,8 +261,8 @@ header > a:active * {
 
 /* Extra small devices */
 @media (width <= 375px) {
-  header {
-    min-height: 350px;
+  .header-content::after {
+    height: 340px;
   }
 
   #title {
@@ -289,8 +299,8 @@ header > a:active * {
 
 /* Very small devices - improved layout */
 @media (width <= 320px) {
-  header {
-    min-height: 330px;
+  .header-content::after {
+    height: 320px;
   }
 
   #title {
@@ -345,8 +355,8 @@ h2 {
 
 /* Navigation menu */
 .main-nav {
-  margin-bottom: 2rem;
   position: relative;
+  margin-top: 1rem;
 }
 
 .nav-menu {
@@ -357,7 +367,11 @@ h2 {
   padding: 1rem 0;
   position: relative;
   margin: 0;
-  padding-left: 1rem;
+  background: transparent;
+}
+
+.nav-menu li {
+  margin: 0;
 }
 
 .main-nav::after {
@@ -385,14 +399,65 @@ h2 {
   background-color: #f5f5f5;
 }
 
-@media (width <= 600px) {
+/* Navigation responsive breakpoints */
+@media (width <= 900px) {
   .nav-menu {
-    gap: 1rem;
+    gap: 1.5rem;
+  }
+}
+
+@media (width <= 768px) {
+  .nav-menu {
+    gap: 1.25rem;
   }
   
   .nav-link {
     font-size: 1rem;
     padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (width <= 600px) {
+  .nav-menu {
+    gap: 1rem;
+  }
+
+  .nav-link {
+    font-size: 0.95rem;
+    padding: 0.35rem 0.7rem;
+  }
+}
+
+@media (width <= 500px) {
+  .nav-menu {
+    gap: 0.8rem;
+  }
+  
+  .nav-link {
+    font-size: 0.9rem;
+    padding: 0.3rem 0.6rem;
+  }
+}
+
+@media (width <= 375px) {
+  .nav-menu {
+    gap: 0.6rem;
+  }
+  
+  .nav-link {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+@media (width <= 320px) {
+  .nav-menu {
+    gap: 0.5rem;
+  }
+  
+  .nav-link {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.4rem;
   }
 }
 
