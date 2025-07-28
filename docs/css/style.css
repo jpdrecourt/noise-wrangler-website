@@ -343,6 +343,45 @@ h2 {
   margin-bottom: 1.5rem;
 }
 
+/* Navigation menu */
+.main-nav {
+  margin-bottom: 2rem;
+}
+
+.nav-menu {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  list-style: none;
+  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.nav-link {
+  color: var(--fg-color);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.nav-link:hover {
+  background-color: #f5f5f5;
+}
+
+@media (width <= 600px) {
+  .nav-menu {
+    gap: 1rem;
+  }
+  
+  .nav-link {
+    font-size: 1rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
 /* Articles grid */
 .articles-grid {
   display: flex;
