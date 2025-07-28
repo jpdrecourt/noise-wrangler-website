@@ -2,13 +2,7 @@
 const articles = [
   // Add blog entries here as they're created
   // Example: 'first-blog-post',
-  'soundshots',
-  'the-code-of-in-between-longing',
-  'alien-eavesdrop',
-  'of-its-own-interest',
-  'o-refugio',
-  'beached-thunder',
-  'sounds-family',
+  'wash-away-pesticides',
 ]
 
 // Make the array available globally
