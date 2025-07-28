@@ -357,13 +357,14 @@ h2 {
   padding: 1rem 0;
   position: relative;
   margin: 0;
+  padding-left: 1rem;
 }
 
 .main-nav::after {
   content: '';
   position: absolute;
   width: 100%;
-  height: 1px;
+  height: 2px;
   bottom: 0;
   left: 0;
   background: linear-gradient(90deg, var(--fg-color), transparent);
@@ -413,18 +414,29 @@ h2 {
 .blog-item {
   display: block;
   padding: 1.5rem 0;
-  border-bottom: 1px solid #eee;
   text-decoration: none;
   color: inherit;
   transition: background-color 0.2s ease;
+  position: relative;
+}
+
+.blog-item::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(90deg, var(--fg-color), transparent);
+  opacity: 0.15;
 }
 
 .blog-item:hover {
   background-color: #f9f9f9;
 }
 
-.blog-item:last-child {
-  border-bottom: none;
+.blog-item:last-child::after {
+  display: none;
 }
 
 .blog-item h3 {
@@ -676,7 +688,7 @@ h2 {
   content: '';
   position: absolute;
   width: 100%;
-  height: 1px;
+  height: 2px;
   top: 0;
   left: 0;
   background: linear-gradient(90deg, var(--fg-color), transparent);
