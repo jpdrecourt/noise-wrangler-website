@@ -354,6 +354,81 @@ h2 {
   margin-bottom: 1.5rem;
 }
 
+/* Article content improvements */
+.article-content h3 {
+  font-size: 1.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.3;
+}
+
+.article-content h4 {
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.article-content p {
+  margin-bottom: 1.5rem;
+}
+
+.article-content ul,
+.article-content ol {
+  margin-bottom: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.article-content li {
+  margin-bottom: 0.5rem;
+}
+
+/* Protocol section styling - recipe-like appearance */
+.protocol-section {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+  position: relative;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.protocol-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--fg-color), transparent);
+  border-radius: 12px 12px 0 0;
+}
+
+.protocol-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--fg-color));
+  border-radius: 0 0 12px 12px;
+}
+
+.protocol-section h3,
+.protocol-section h4 {
+  margin-top: 0;
+  color: var(--fg-color);
+}
+
+.protocol-section ol {
+  padding-left: 1.5rem;
+}
+
+.protocol-section ul {
+  padding-left: 1.5rem;
+}
+
 /* Navigation menu */
 .main-nav {
   position: relative;
