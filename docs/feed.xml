@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+    <title>Noise Wrangler</title>
+    <description>Sonic Explorations by Jean-Philippe Drecourt</description>
+    <link>https://noisewrangler.art/</link>
+    <atom:link href="https://noisewrangler.art/feed.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Sun, 03 Aug 2025 09:28:59 GMT</lastBuildDate>
+    <generator>Noise Wrangler RSS Generator</generator>
+
+    <item>
+        <title>Wash away pesticides</title>
+        <description>Science based approach to reduce pesticides when washing your fruits and vegetables.</description>
+        <link>https://noisewrangler.art/articles/wash-away-pesticides/</link>
+        <guid>https://noisewrangler.art/articles/wash-away-pesticides/</guid>
+        <pubDate>Mon, 28 Jul 2025 12:00:00 GMT</pubDate>
+        <category>Presques Riens</category>
+        <enclosure url="https://noisewrangler.art/media/20241220_015_Barreiro-Improvised-AMAC_cred_VeraMarmelo.JPG" type="image/jpeg" length="0" />
+    </item>
+
+    <item>
+        <title>Barreiro Improvised</title>
+        <description>Live improvised performance with the sounds of Barreiro.</description>
+        <link>https://noisewrangler.art/articles/barreiro-improvised/</link>
+        <guid>https://noisewrangler.art/articles/barreiro-improvised/</guid>
+        <pubDate>Wed, 20 Nov 2024 12:00:00 GMT</pubDate>
+        <category>Music</category>
+        <enclosure url="https://noisewrangler.art/media/20241220_042_Barreiro-Improvised-AMAC_cred_VeraMarmelo.JPG" type="image/jpeg" length="0" />
+    </item>
+
+    <item>
+        <title>Live electroacoustic improvisations</title>
+        <description>Live electroacoustic improvisations based on field recordings and the
+          Chaos Conductor.</description>
+        <link>https://noisewrangler.art/articles/noise-wranglings/</link>
+        <guid>https://noisewrangler.art/articles/noise-wranglings/</guid>
+        <pubDate>Mon, 21 Oct 2024 11:00:00 GMT</pubDate>
+        <category>Music</category>
+        <enclosure url="https://noisewrangler.art/media/noise-wranglings-desert-storm.jpg" type="image/jpeg" length="0" />
+    </item>
+
+    <item>
+        <title>Soundshots</title>
+        <description>Sonic snapshots inspired by Rob Walker&apos;s The Art of Noticing</description>
+        <link>https://noisewrangler.art/articles/soundshots/</link>
+        <guid>https://noisewrangler.art/articles/soundshots/</guid>
+        <pubDate>Sat, 21 Sep 2024 11:00:00 GMT</pubDate>
+        <category>Music</category>
+        <enclosure url="https://noisewrangler.art/media/ikea-label.jpg" type="image/jpeg" length="0" />
+    </item>
+
+    <item>
+        <title>Alien Eavesdrop</title>
+        <description>What would field recording on an alien planet sound like?</description>
+        <link>https://noisewrangler.art/articles/alien-eavesdrop/</link>
+        <guid>https://noisewrangler.art/articles/alien-eavesdrop/</guid>
+        <pubDate>Thu, 22 Aug 2024 11:00:00 GMT</pubDate>
+        <category>Music</category>
+        <enclosure url="https://noisewrangler.art/media/great-swamp-lunis.jpg" type="image/jpeg" length="0" />
+    </item>
+
+    <item>
+        <title>Sounds for/from my family</title>
+        <description>Electroacoustic improvisation using sounds provided by my family.</description>
+        <link>https://noisewrangler.art/articles/sounds-family/</link>
+        <guid>https://noisewrangler.art/articles/sounds-family/</guid>
+        <pubDate>Tue, 23 Jul 2024 11:00:00 GMT</pubDate>
+        <category>Music</category>
+        <enclosure url="https://noisewrangler.art/media/sounds-family.jpg" type="image/jpeg" length="0" />
+    </item>
+
+    <item>
+        <title>O Refugio de Uma Petala Caida</title>
+        <description>Soundtrack for a short film</description>
+        <link>https://noisewrangler.art/articles/o-refugio/</link>
+        <guid>https://noisewrangler.art/articles/o-refugio/</guid>
+        <pubDate>Sun, 23 Jun 2024 11:00:00 GMT</pubDate>
+        <category>Music</category>
+        <enclosure url="https://noisewrangler.art/media/o-refugio.jpg" type="image/jpeg" length="0" />
+    </item>
+
+    <item>
+        <title>Beached Thunder</title>
+        <description>Electroacoustic and noise improvised album.</description>
+        <link>https://noisewrangler.art/articles/beached-thunder/</link>
+        <guid>https://noisewrangler.art/articles/beached-thunder/</guid>
+        <pubDate>Fri, 24 May 2024 11:00:00 GMT</pubDate>
+        <category>Music</category>
+        <enclosure url="https://noisewrangler.art/media/beached-thunder-cover.jpg" type="image/jpeg" length="0" />
+    </item>
+
+    <item>
+        <title>Of its own Interest</title>
+        <description>80s electronic music inspired album.</description>
+        <link>https://noisewrangler.art/articles/of-its-own-interest/</link>
+        <guid>https://noisewrangler.art/articles/of-its-own-interest/</guid>
+        <pubDate>Wed, 24 Apr 2024 11:00:00 GMT</pubDate>
+        <category>Music</category>
+        <enclosure url="https://noisewrangler.art/media/of-its-own-interest-cover.jpg" type="image/jpeg" length="0" />
+    </item>
+
+    <item>
+        <title>The Code of In-between, longing</title>
+        <description>Analysis of the code of the piece &apos;In-between, longing.&apos;</description>
+        <link>https://noisewrangler.art/articles/the-code-of-in-between-longing/</link>
+        <guid>https://noisewrangler.art/articles/the-code-of-in-between-longing/</guid>
+        <pubDate>Mon, 25 Mar 2024 12:00:00 GMT</pubDate>
+        <category>Music</category>
+        <enclosure url="https://noisewrangler.art/media/code-of-in-between-longing-cover.jpg" type="image/jpeg" length="0" />
+    </item>
+
+    <item>
+        <title>In-between, longing</title>
+        <description>Sonic interpretation of a seminal encounter.</description>
+        <link>https://noisewrangler.art/articles/in-between-longing/</link>
+        <guid>https://noisewrangler.art/articles/in-between-longing/</guid>
+        <pubDate>Sat, 24 Feb 2024 12:00:00 GMT</pubDate>
+        <category>Music</category>
+        <enclosure url="https://noisewrangler.art/media/in-between-longing-cover.jpg" type="image/jpeg" length="0" />
+    </item>
+
+    <item>
+        <title>Electroacoustic Studies</title>
+        <description>A collection of three electroacoustic pieces.</description>
+        <link>https://noisewrangler.art/articles/electroacoustic-studies/</link>
+        <guid>https://noisewrangler.art/articles/electroacoustic-studies/</guid>
+        <pubDate>Thu, 25 Jan 2024 12:00:00 GMT</pubDate>
+        <category>Music</category>
+        <enclosure url="https://noisewrangler.art/media/electroacoustic_studies.jpg" type="image/jpeg" length="0" />
+    </item>
+
+    <item>
+        <title>Beat Vox</title>
+        <description>Electroacoustic track inspired by the inability to understand a
+          foreign language.</description>
+        <link>https://noisewrangler.art/articles/beat-vox/</link>
+        <guid>https://noisewrangler.art/articles/beat-vox/</guid>
+        <pubDate>Tue, 26 Dec 2023 12:00:00 GMT</pubDate>
+        <category>Music</category>
+        <enclosure url="https://noisewrangler.art/media/beat_vox.jpg" type="image/jpeg" length="0" />
+    </item>
+
+    <item>
+        <title>Tap the Rain</title>
+        <description>Live performance for the 80 years of the Barreiro water supply.</description>
+        <link>https://noisewrangler.art/articles/tap-the-rain/</link>
+        <guid>https://noisewrangler.art/articles/tap-the-rain/</guid>
+        <pubDate>Sun, 26 Nov 2023 12:00:00 GMT</pubDate>
+        <category>Music</category>
+        <enclosure url="https://noisewrangler.art/media/20170528_005_tap-the-rain_cred_VeraMarmelo.JPG" type="image/jpeg" length="0" />
+    </item>
+
+    <item>
+        <title>Ind Ud</title>
+        <description>Soundscape and experimental video featuring the unique voices from
+          Copenhagen&apos;s transport system checkpoints.</description>
+        <link>https://noisewrangler.art/articles/ind-ud/</link>
+        <guid>https://noisewrangler.art/articles/ind-ud/</guid>
+        <pubDate>Fri, 27 Oct 2023 11:00:00 GMT</pubDate>
+        <category>Music</category>
+        <enclosure url="https://noisewrangler.art/media/indud-snapshot.jpg" type="image/jpeg" length="0" />
+    </item>
+
+</channel>
+</rss>

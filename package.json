@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "lint": "eslint . && prettier --check . && stylelint '**/*.{css,scss}'",
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "update-rss": "node update-rss.cjs",
+    "build": "npm run update-rss"
   },
   "source": [
     "./docs/index.html"
