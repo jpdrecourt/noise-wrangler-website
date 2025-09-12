@@ -6,8 +6,18 @@
     <link>https://noisewrangler.art/</link>
     <atom:link href="https://noisewrangler.art/feed.xml" rel="self" type="application/rss+xml" />
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Aug 2025 10:28:11 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 12 Sep 2025 06:08:02 GMT</lastBuildDate>
     <generator>Noise Wrangler RSS Generator</generator>
+
+    <item>
+        <title>World TLDR - August 2025</title>
+        <description>World TLDR August 2025</description>
+        <link>https://noisewrangler.art/articles/world-tldr-2508/</link>
+        <guid>https://noisewrangler.art/articles/world-tldr-2508/</guid>
+        <pubDate>Fri, 12 Sep 2025 07:47:08 GMT</pubDate>
+        <category>Presques Riens</category>
+        <enclosure url="https://noisewrangler.art/media/world-tldr.jpg" type="image/jpeg" length="0" />
+    </item>
 
     <item>
         <title>Wash away pesticides</title>
