@@ -358,16 +358,15 @@ p[\switchReverb] = Pbind(
         </ul>
         <p>
           A <code>\story</code> event is inserted in between each of the
-          specific topic (e.g. <code>\story</code>, <code>\ands</code>,
+          specific topics (e.g. <code>\story</code>, <code>\ands</code>,
           <code>\story</code>, <code>\incredible</code>, <code>\story</code>,
           <code>\remember</code>, ...), and a <code>\silence</code> event is
           inserted at random without breaking the order of the other events. To
           obtain this, I used a <code>Prout</code> that returned the name of the
           event insde a <code>Pbind</code>. The advantage of the
-          <code>Prout</code> is that you can return a value in the middle of the
-          execution without loosing your posit\silence allows me to randomly
-          return a <code>\silence</code> event without messing up the rest of
-          the chronology.
+          <code>Prout</code> is that you can return (<code>yield</code>) a value
+          in the middle of the execution without loosing your state, in this
+          case a random <code>\silence</code> event 20% of the time.
         </p>
         <pre><code>Prout({
     // Non silent events organised in two sub-arrays
