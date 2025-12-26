@@ -215,8 +215,7 @@ class BreadCalculator {
       timing: this.formatPomodoro(-38.4),
       activeTime: '2 minutes',
       description: `
-        <p>Rehydrate your starter with 100g water (or more if you maintain a larger starter).</p>
-        <p><strong>What's happening:</strong> Waking up your sourdough culture for tomorrow's bake.</p>
+        <p>Rehydrate your starter with 100g water.</p>
       `,
     });
 
@@ -224,76 +223,55 @@ class BreadCalculator {
     steps.push({
       title: 'POMODORO 0 - Autolyse',
       timing: 'Start (0.0 pomodoros)',
-      activeTime: '2 minutes active',
+      activeTime: '2 minutes',
       description: `
+        <p><strong>Everything happens in the bowl. No kneading, no mess.</strong></p>
         <ul>
-          <li>Mix all flour (${ingredients.totalFlour}g total) + ${ingredients.initialWater}g water (hold back ${ingredients.reserveWater}g)</li>
-          <li>Rough mix just until no dry bits - use wet hands, no kneading</li>
-          <li>Cover, rest for 90 minutes (3.6 pomodoros)</li>
+          <li>In your bowl: ${ingredients.totalFlour}g flour + ${ingredients.initialWater}g water (reserve ${ingredients.reserveWater}g)</li>
+          <li>Mix with wet hands until no dry bits remain</li>
+          <li>Cover and rest 4 pomodoros (100 minutes)</li>
         </ul>
-        <div class="step-notes">
-          <strong>What's happening:</strong> Enzymes are working, pentosans in rye are hydrating,
-          gluten is self-organizing. You're doing nothing and getting 40-50% of the work done.
-        </div>
       `,
     });
 
     // Step 1.5: Mix
     steps.push({
-      title: 'POMODORO 3.6 - Mix',
-      timing: this.formatPomodoro(3.6),
-      activeTime: '3 minutes active',
+      title: 'POMODORO 4 - Mix',
+      timing: this.formatPomodoro(4),
+      activeTime: '3 minutes',
       description: `
+        <p><strong>Stay in the bowl.</strong></p>
         <ul>
-          <li>Add ${ingredients.starter}g starter</li>
-          <li>Add ${ingredients.salt}g salt</li>
-          <li>Add remaining ${ingredients.reserveWater}g water</li>
-          <li>Pinch and fold through the dough 2-3 minutes until incorporated</li>
-          <li>It will be sticky - c'est normal with high hydration</li>
-          <li>Cover the dough</li>
-          <li>Refill your starter with 100g flour + water, return to fridge</li>
+          <li>Add ${ingredients.starter}g starter, ${ingredients.salt}g salt, ${ingredients.reserveWater}g water</li>
+          <li>Pinch and fold in the bowl until incorporated</li>
+          <li>Cover</li>
+          <li>Refill starter jar with 100g flour + water, return to fridge</li>
         </ul>
       `,
     });
 
     // Stretch & Fold sets
-    const foldStarts = [4.8, 6.0, 7.2, 8.4];
+    const foldStarts = [5, 6, 7, 8];
     foldStarts.forEach((start, index) => {
       steps.push({
-        title: `POMODORO ${start.toFixed(1)} - Stretch & Fold Set ${index + 1}`,
+        title: `POMODORO ${start} - Stretch & Fold ${index + 1}`,
         timing: this.formatPomodoro(start),
-        activeTime: '2 minutes active',
+        activeTime: '1 minute',
         description: `
-          <ul>
-            <li>Wet your hands</li>
-            <li>Grab one edge, stretch up, fold over center</li>
-            <li>Rotate bowl 90°, repeat</li>
-            <li>Do this 4 times (N, E, S, W)</li>
-            <li>Cover and let rest</li>
-          </ul>
-          ${index === 3 ? '<div class="step-notes"><strong>After this fold, you\'re DONE touching it.</strong> The dough doesn\'t want your attention anymore.</div>' : ''}
+          <p><strong>In the bowl:</strong> wet hands, grab edge, stretch up, fold to center. Rotate bowl, repeat 4 times. Cover.</p>
+          ${index === 3 ? '<div class="step-notes"><strong>Last fold. Now hands off.</strong></div>' : ''}
         `,
       });
     });
 
     // Bulk Fermentation
     steps.push({
-      title: 'POMODOROS 9.6-28.8 - Bulk Fermentation',
-      timing: '12-28.8 pomodoros (5-12 hours)',
-      activeTime: '0 minutes (just observe)',
+      title: 'POMODOROS 9-29 - Bulk Fermentation',
+      timing: '12-29 pomodoros (5-12 hours)',
+      activeTime: '0 minutes',
       description: `
-        <p><strong>Option 1 - Room Temperature (18-22°C):</strong></p>
-        <ul>
-          <li>Leave at room temp for 5-7 hours (12-16.8 pomodoros)</li>
-          <li>Look for 30-40% volume increase</li>
-          <li>You should see bubbles on surface and sides</li>
-        </ul>
-        <p><strong>Option 2 - Cold Fermentation (Recommended):</strong></p>
-        <ul>
-          <li>Put in fridge (3-5°C) right after last fold</li>
-          <li>Let it go 8-12 hours cold (19.2-28.8 pomodoros)</li>
-          <li>More flexibility, even better flavor</li>
-        </ul>
+        <p>Room temp (18-22°C): 5-7 hours until 30-40% larger with surface bubbles.</p>
+        <p>OR cold (3-5°C): 8-12 hours in fridge.</p>
       `,
     });
 
@@ -301,15 +279,11 @@ class BreadCalculator {
     steps.push({
       title: 'POMODORO ~30 - Shape',
       timing: 'After bulk fermentation',
-      activeTime: '4 minutes active',
+      activeTime: '3 minutes',
       description: `
         <ul>
-          <li>Flour your counter WELL (sticky dough)</li>
-          <li>Turn dough out gently - don't degass aggressively</li>
-          <li>Pre-shape if making 2 loaves (divide, round gently)</li>
-          <li>Rest 20 minutes (0.8 pomodoros)</li>
-          <li>Final shape with decent tension - high hydration means you need that surface tension</li>
-          <li>Into banneton seam-side up, dust with rice flour</li>
+          <li>Flour counter, turn out dough gently</li>
+          <li>Shape with surface tension, into banneton seam-up</li>
         </ul>
       `,
     });
@@ -317,18 +291,11 @@ class BreadCalculator {
     // Final Proof
     steps.push({
       title: 'POMODORO ~31 - Final Proof',
-      timing: '4.8-38.4 pomodoros (2-16 hours)',
+      timing: '5-38 pomodoros (2-16 hours)',
       activeTime: '0 minutes',
       description: `
-        <p><strong>Option 1 - Room Temperature:</strong></p>
-        <ul>
-          <li>2-3 hours (4.8-7.2 pomodoros) until jiggly, slightly domed</li>
-        </ul>
-        <p><strong>Option 2 - Cold Proof (Better):</strong></p>
-        <ul>
-          <li>Straight into fridge for 8-16 hours (19.2-38.4 pomodoros)</li>
-          <li>Better flavor development and easier to score</li>
-        </ul>
+        <p>Room temp: 2-3 hours until jiggly and domed.</p>
+        <p>OR cold: 8-16 hours in fridge.</p>
       `,
     });
 
@@ -336,16 +303,12 @@ class BreadCalculator {
     steps.push({
       title: 'POMODORO ~35-70 - Bake',
       timing: 'After final proof',
-      activeTime: '5 minutes active',
+      activeTime: '3 minutes',
       description: `
         <ul>
-          <li>Preheat oven + Dutch oven to 250°C (30 minutes / 1.2 pomodoros)</li>
-          <li>Score your loaf (wet blade)</li>
-          <li>Bake covered 20 minutes (0.8 pomodoros) at 250°C</li>
-          <li>Uncover, drop to 230°C</li>
-          <li>Bake 25-30 minutes (1-1.2 pomodoros) until deep brown</li>
-          <li>Internal temp should hit 98-100°C</li>
-          <li><strong>If baking from cold:</strong> add 5 minutes to covered time</li>
+          <li>Preheat oven + Dutch oven to 250°C (1 pomodoro)</li>
+          <li>Score loaf, bake covered 1 pomodoro at 250°C</li>
+          <li>Uncover, drop to 230°C, bake 1-2 pomodoros until deep brown</li>
         </ul>
       `,
     });
@@ -362,7 +325,7 @@ class BreadCalculator {
 
     // Update stats
     document.getElementById('total-time').textContent = '~15 hours';
-    document.getElementById('active-work').textContent = '~15 minutes';
+    document.getElementById('active-work').textContent = '~17 minutes';
 
     // Generate ingredients list
     this.renderIngredients(ingredients);
@@ -418,13 +381,6 @@ class BreadCalculator {
     `;
     html += '</div>';
 
-    html += `
-      <div class="step-notes" style="margin-top: 1rem;">
-        <strong>Why ${ingredients.adjustedHydration}% hydration?</strong>
-        Your flour composition requires this adjustment. Different flours absorb water differently:
-        whole grains and rye drink up more water than refined white flour.
-      </div>
-    `;
 
     ingredientsDiv.innerHTML = html;
   }

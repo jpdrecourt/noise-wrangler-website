@@ -112,35 +112,35 @@ const BREAD_CONFIG = {
     starterFeed: -38.4, // -24 hours = -960 minutes = -38.4 pomodoros
     autolyse: {
       start: 0,
-      duration: 3.6, // 90 minutes = 3.6 pomodoros
+      duration: 4, // 100 minutes = 4 pomodoros
     },
     mix: {
-      start: 3.6,
+      start: 4,
       duration: 0.12, // 3 minutes
     },
     stretchAndFold: {
       sets: 4,
-      interval: 1.2, // 30 minutes = 1.2 pomodoros
-      duration: 0.08, // 2 minutes per set
-      starts: [4.8, 6, 7.2, 8.4], // Pomodoros 2, 2.5, 3, 3.5 after mix
+      interval: 1, // 25 minutes = 1 pomodoro
+      duration: 0.04, // 1 minute per set
+      starts: [5, 6, 7, 8], // Pomodoros 5, 6, 7, 8
     },
     bulkFermentation: {
-      start: 9.6,
-      durationRange: [12, 28.8], // 5-12 hours = 12-28.8 pomodoros
+      start: 9,
+      durationRange: [12, 29], // 5-12 hours = 12-29 pomodoros
       description: 'Room temp (18-22°C) or cold (3-5°C)',
     },
     shape: {
-      duration: 0.16, // 4 minutes
-      rest: 0.8, // 20 minutes = 0.8 pomodoros
+      duration: 0.12, // 3 minutes
+      rest: 0, // No rest in simplified version
     },
     finalProof: {
-      durationRange: [4.8, 38.4], // 2-16 hours
+      durationRange: [5, 38], // 2-16 hours
       description: 'Room temp 2-3h or cold 8-16h',
     },
     bake: {
-      preheat: 1.2, // 30 minutes
-      covered: 0.8, // 20 minutes at 250°C
-      uncovered: 1.2, // 25-30 minutes at 230°C
+      preheat: 1, // 25 minutes = 1 pomodoro
+      covered: 1, // 25 minutes = 1 pomodoro at 250°C
+      uncovered: 2, // 50 minutes = 2 pomodoros at 230°C
     },
   },
 };
