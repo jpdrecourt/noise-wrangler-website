@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Sourdough Bread Calculator - The Pomodoro Bread Recipe for remote workers"
+    />
+    <meta property="og:title" content="Pomodoro Bread Calculator - Noise Wrangler" />
+    <meta
+      property="og:description"
+      content="Calculate your perfect sourdough recipe using pomodoro timing"
+    />
+    <meta
+      property="og:image"
+      content="https://noisewrangler.art/media/20241220_015_Barreiro-Improvised-AMAC_cred_VeraMarmelo.JPG"
+    />
+    <meta property="og:url" content="https://noisewrangler.art/articles/pomodoro-bread/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Noise Wrangler" />
+    <meta
+      property="article:published_time"
+      content="2025-12-26T12:00:00.000Z"
+    />
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/bread-calculator.css" />
+    <title>Pomodoro Bread Calculator - Noise Wrangler</title>
+  </head>
+  <body class="body">
+    <header>
+      <div class="header-content">
+        <a href="https://noisewrangler.art">
+          <div id="title">
+            <img
+              id="logo"
+              src="../../media/Noise-Wrangler-logo-rounded.svg"
+              alt="Noise Wrangler Logo"
+            />
+            <div id="title-text">
+              <h1>Noise Wrangler</h1>
+
+              <div class="byline">
+                <span>Sonic Explorations</span>
+                <span class="by-name">by Jean-Philippe Drecourt</span>
+              </div>
+            </div>
+          </div>
+        </a>
+        <div class="header-block-diagram">
+          <img
+            src="../../media/fishy-metro-square.png"
+            alt="Sound synthesis block diagram"
+          />
+        </div>
+        <div class="header-image">
+          <img
+            src="../../media/20241220_015_Barreiro-Improvised-AMAC_cred_VeraMarmelo.JPG"
+            alt="Jean-Philippe Drecourt performing live"
+          />
+        </div>
+      </div>
+
+      <nav class="main-nav">
+        <ul class="nav-menu">
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li>
+            <a href="../../presques-riens.html" class="nav-link">Presques Riens</a>
+          </li>
+          <li><a href="../../about.html" class="nav-link">Biography</a></li>
+          <li>
+            <a href="../../feed.xml" class="nav-link">RSS</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <section>
+      <div class="recipe-header">
+        <h2>The Pomodoro Bread Recipe</h2>
+        <p class="recipe-subtitle">A sourdough calculator for the work-from-home artisan</p>
+        <p class="recipe-intro">
+          Time-box your bread making using the Pomodoro Technique. Each pomodoro represents
+          25 minutes of focused work or rest. Perfect for fitting bread making into your
+          remote work routine.
+        </p>
+      </div>
+
+      <!-- Calculator Section -->
+      <div class="calculator-container">
+        <h3>Recipe Calculator</h3>
+
+        <div class="calculator-section">
+          <h4>Total Flour Amount</h4>
+          <div class="input-group">
+            <label for="total-flour">Total flour weight (g):</label>
+            <input type="number" id="total-flour" value="800" min="100" max="5000" step="50" />
+          </div>
+        </div>
+
+        <div class="calculator-section">
+          <h4>Flour Composition</h4>
+          <div id="flour-inputs">
+            <!-- Flour inputs will be dynamically generated -->
+          </div>
+          <button type="button" class="btn-secondary" id="add-flour">+ Add Flour Type</button>
+        </div>
+
+        <div class="calculator-section">
+          <h4>Recipe Parameters</h4>
+
+          <div class="input-group">
+            <label for="base-hydration">
+              Base hydration (%):
+              <span class="help-text">Starting point before flour adjustments</span>
+            </label>
+            <input type="number" id="base-hydration" value="70" min="50" max="100" step="1" />
+          </div>
+
+          <div class="input-group">
+            <label for="salt-percentage">
+              Salt (%):
+              <span class="help-text">Percentage of flour weight</span>
+            </label>
+            <input type="number" id="salt-percentage" value="2" min="1" max="3" step="0.1" />
+          </div>
+
+          <div class="input-group">
+            <label for="starter-percentage">
+              Starter (%):
+              <span class="help-text">Percentage of flour weight (15-25% typical)</span>
+            </label>
+            <input type="number" id="starter-percentage" value="25" min="10" max="40" step="1" />
+          </div>
+        </div>
+
+        <div class="button-group">
+          <button type="button" class="btn-primary" id="calculate-recipe">Calculate Recipe</button>
+          <button type="button" class="btn-secondary" id="reset-calculator">Reset to Defaults</button>
+        </div>
+      </div>
+
+      <!-- Recipe Output Section -->
+      <div class="recipe-output" id="recipe-output" style="display: none;">
+        <div class="no-print">
+          <button type="button" class="btn-print" id="print-recipe">🖨️ Print Recipe</button>
+        </div>
+
+        <div class="recipe-content">
+          <h3>Your Pomodoro Bread Recipe</h3>
+
+          <div class="recipe-stats">
+            <div class="stat-item">
+              <span class="stat-label">Total Time:</span>
+              <span class="stat-value" id="total-time">~15 hours</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Active Work:</span>
+              <span class="stat-value" id="active-work">~12 minutes</span>
+            </div>
+          </div>
+
+          <div class="ingredients-section">
+            <h4>Ingredients</h4>
+            <div id="ingredients-list"></div>
+          </div>
+
+          <div class="protocol-section">
+            <h4>The Protocol</h4>
+            <div id="protocol-steps"></div>
+          </div>
+
+          <div class="notes-section">
+            <h4>Notes</h4>
+            <ul>
+              <li>1 pomodoro = 25 minutes of focused time</li>
+              <li>Temperature ranges: Room temp 18-22°C, Cold fermentation 3-5°C</li>
+              <li>Target internal temperature for baked bread: 98-100°C</li>
+              <li>If baking from cold, add 5 minutes to covered baking time</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img
+            class="footer-img"
+            src="../../media/Noise-Wrangler-logo-rounded.svg"
+            alt="Noise Wrangler Logo"
+          />
+        </div>
+        <div class="footer-social">
+          <a
+            href="https://noisewrangler.bandcamp.com/"
+            aria-label="Noise Wrangler Bandcamp"
+            >Bandcamp (NW)</a
+          >
+          <a
+            href="https://jpdrecourt.bandcamp.com/"
+            aria-label="Drecourt Bandcamp"
+            >Bandcamp (JPD)</a
+          >
+          <a
+            href="https://www.instagram.com/noise_wrangler/"
+            aria-label="Instagram"
+            >Instagram</a
+          >
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <p>&copy; 2025 Jean-Philippe Drecourt. All rights reserved.</p>
+        <p>
+          Header image by
+          <a href="https://v-miopia.blogspot.com/">Vera Marmelo</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="../../js/bread-config.js"></script>
+    <script src="../../js/bread-calculator.js"></script>
+  </body>
+</html>
