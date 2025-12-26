@@ -22,12 +22,12 @@ class BreadCalculator {
 
   initializeFlourInputs() {
     // Start with 3 default flour types matching the original recipe
-    this.addFlourInput('strong-white', 50);
-    this.addFlourInput('whole-wheat', 25);
-    this.addFlourInput('whole-rye', 25);
+    this.addFlourInput('strong-white', 400);
+    this.addFlourInput('whole-wheat', 200);
+    this.addFlourInput('whole-rye', 200);
   }
 
-  addFlourInput(defaultType = '', defaultPercentage = 0) {
+  addFlourInput(defaultType = '', defaultWeight = 0) {
     const flourInputsDiv = document.getElementById('flour-inputs');
     const flourId = `flour-${this.flourCount++}`;
 
@@ -56,22 +56,22 @@ class BreadCalculator {
     typeGroup.appendChild(typeLabel);
     typeGroup.appendChild(typeSelect);
 
-    // Create percentage input
-    const percentGroup = document.createElement('div');
-    percentGroup.className = 'input-group';
+    // Create weight input
+    const weightGroup = document.createElement('div');
+    weightGroup.className = 'input-group';
 
-    const percentLabel = document.createElement('label');
-    percentLabel.textContent = 'Percentage (%):';
-    const percentInput = document.createElement('input');
-    percentInput.type = 'number';
-    percentInput.className = 'flour-percentage';
-    percentInput.min = '0';
-    percentInput.max = '100';
-    percentInput.step = '1';
-    percentInput.value = defaultPercentage;
+    const weightLabel = document.createElement('label');
+    weightLabel.textContent = 'Weight (g):';
+    const weightInput = document.createElement('input');
+    weightInput.type = 'number';
+    weightInput.className = 'flour-weight';
+    weightInput.min = '0';
+    weightInput.max = '5000';
+    weightInput.step = '10';
+    weightInput.value = defaultWeight;
 
-    percentGroup.appendChild(percentLabel);
-    percentGroup.appendChild(percentInput);
+    weightGroup.appendChild(weightLabel);
+    weightGroup.appendChild(weightInput);
 
     // Create remove button
     const removeBtn = document.createElement('button');
@@ -82,14 +82,13 @@ class BreadCalculator {
     });
 
     flourRow.appendChild(typeGroup);
-    flourRow.appendChild(percentGroup);
+    flourRow.appendChild(weightGroup);
     flourRow.appendChild(removeBtn);
 
     flourInputsDiv.appendChild(flourRow);
   }
 
   loadDefaultValues() {
-    document.getElementById('total-flour').value = this.config.defaults.totalFlour;
     document.getElementById('base-hydration').value = this.config.defaults.baseHydration;
     document.getElementById('salt-percentage').value = this.config.defaults.saltPercentage;
     document.getElementById('starter-percentage').value = this.config.defaults.starterPercentage;
@@ -111,30 +110,31 @@ class BreadCalculator {
   getFlourComposition() {
     const flourRows = document.querySelectorAll('.flour-row');
     const composition = [];
-    let totalPercentage = 0;
+    let totalWeight = 0;
 
     flourRows.forEach(row => {
       const type = row.querySelector('.flour-type').value;
-      const percentage = parseFloat(row.querySelector('.flour-percentage').value) || 0;
+      const weight = parseFloat(row.querySelector('.flour-weight').value) || 0;
 
-      if (percentage > 0) {
+      if (weight > 0) {
         composition.push({
           type,
-          percentage,
+          weight,
           data: this.config.flourTypes[type],
         });
-        totalPercentage += percentage;
+        totalWeight += weight;
       }
     });
 
-    return { composition, totalPercentage };
+    return { composition, totalWeight };
   }
 
-  calculateHydration(flourComposition, baseHydration) {
+  calculateHydration(flourComposition, totalWeight, baseHydration) {
     let adjustedHydration = baseHydration;
 
     flourComposition.forEach(flour => {
-      const weightedAdjustment = (flour.data.adjustment * flour.percentage) / 100;
+      const percentage = (flour.weight / totalWeight) * 100;
+      const weightedAdjustment = (flour.data.adjustment * percentage) / 100;
       adjustedHydration += weightedAdjustment;
     });
 
@@ -142,39 +142,38 @@ class BreadCalculator {
   }
 
   calculateIngredients() {
-    const totalFlour = parseFloat(document.getElementById('total-flour').value);
     const baseHydration = parseFloat(document.getElementById('base-hydration').value);
     const saltPercentage = parseFloat(document.getElementById('salt-percentage').value);
     const starterPercentage = parseFloat(document.getElementById('starter-percentage').value);
 
-    const { composition, totalPercentage } = this.getFlourComposition();
+    const { composition, totalWeight } = this.getFlourComposition();
 
-    // Validate flour percentages
-    if (Math.abs(totalPercentage - 100) > 0.1) {
-      alert(`Flour percentages must add up to 100%. Current total: ${totalPercentage}%`);
+    // Validate that we have some flour
+    if (totalWeight === 0) {
+      alert('Please add at least one flour with a weight greater than 0.');
       return null;
     }
 
     // Calculate adjusted hydration
-    const adjustedHydration = this.calculateHydration(composition, baseHydration);
+    const adjustedHydration = this.calculateHydration(composition, totalWeight, baseHydration);
 
-    // Calculate flour amounts
+    // Add percentage to each flour for display
     const flours = composition.map(flour => ({
       ...flour,
-      weight: Math.round((totalFlour * flour.percentage) / 100),
+      percentage: Math.round((flour.weight / totalWeight) * 100),
     }));
 
     // Calculate other ingredients
-    const water = Math.round((totalFlour * adjustedHydration) / 100);
+    const water = Math.round((totalWeight * adjustedHydration) / 100);
     const reserveWater = Math.round(water * 0.065); // ~6.5% reserve
     const initialWater = water - reserveWater;
 
-    const salt = Math.round((totalFlour * saltPercentage) / 100);
-    const starter = Math.round((totalFlour * starterPercentage) / 100);
+    const salt = Math.round((totalWeight * saltPercentage) / 100);
+    const starter = Math.round((totalWeight * starterPercentage) / 100);
 
     return {
       flours,
-      totalFlour,
+      totalFlour: totalWeight,
       water,
       initialWater,
       reserveWater,
