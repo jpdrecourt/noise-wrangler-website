@@ -349,6 +349,84 @@
   color: #666;
 }
 
+/* Starter Care Section */
+.starter-care-section {
+  background: linear-gradient(135deg, #f0f8f0 0%, #e8f5e9 100%);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  border-left: 4px solid #28a745;
+}
+
+.starter-care-section h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #155724;
+}
+
+.starter-intro {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #155724;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 6px;
+  border-left: 3px solid #28a745;
+}
+
+.starter-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.starter-step {
+  background: white;
+  padding: 1.2rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 5%);
+}
+
+.starter-step h5 {
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  font-size: 1.2rem;
+  color: #28a745;
+  border-bottom: 2px solid #e8f5e9;
+  padding-bottom: 0.5rem;
+}
+
+.starter-step ol {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.starter-step li {
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #444;
+}
+
+.starter-step p {
+  margin: 0.8rem 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #444;
+}
+
+.starter-note {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background: #fff9e6;
+  border-left: 3px solid #ffc107;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  color: #666;
+}
+
 /* Notes Section */
 .notes-section {
   background: #e8f4f8;
@@ -393,7 +471,13 @@
   }
 
   .protocol-section,
-  .ingredients-section {
+  .ingredients-section,
+  .starter-care-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .starter-step {
     break-inside: avoid;
     page-break-inside: avoid;
   }
