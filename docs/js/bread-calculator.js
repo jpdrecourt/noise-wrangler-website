@@ -104,8 +104,8 @@ class BreadCalculator {
     this.initializeFlourInputs();
     this.loadDefaultValues();
 
-    // Hide recipe output
-    document.getElementById('recipe-output').style.display = 'none';
+    // Clear ingredients
+    document.getElementById('ingredients-list').innerHTML = '';
   }
 
   getFlourComposition() {
@@ -185,136 +185,6 @@ class BreadCalculator {
     };
   }
 
-  formatPomodoro(pomodoros) {
-    if (pomodoros < 0) {
-      return `${Math.abs(pomodoros).toFixed(1)} ${this.config.pomodoro.pluralLabel} before start`;
-    }
-    return `${pomodoros.toFixed(1)} ${pomodoros === 1 ? this.config.pomodoro.label : this.config.pomodoro.pluralLabel}`;
-  }
-
-  formatTime(pomodoros) {
-    const minutes = Math.round(pomodoros * this.config.pomodoro.duration);
-    const hours = Math.floor(minutes / 60);
-    const mins = minutes % 60;
-
-    if (hours > 0 && mins > 0) {
-      return `${hours}h ${mins}min`;
-    } else if (hours > 0) {
-      return `${hours}h`;
-    } else {
-      return `${mins}min`;
-    }
-  }
-
-  generateProtocolSteps(ingredients) {
-    const steps = [];
-
-    // Step -24h: Feed starter
-    steps.push({
-      title: 'POMODORO -38.4 - Feed Your Starter',
-      timing: this.formatPomodoro(-38.4),
-      activeTime: '2 minutes',
-      description: `
-        <p>Rehydrate your starter with 100g water.</p>
-      `,
-    });
-
-    // Step 0: Autolyse
-    steps.push({
-      title: 'POMODORO 0 - Autolyse',
-      timing: 'Start (0.0 pomodoros)',
-      activeTime: '2 minutes',
-      description: `
-        <p><strong>Everything happens in the bowl. No kneading, no mess.</strong></p>
-        <ul>
-          <li>In your bowl: ${ingredients.totalFlour}g flour + ${ingredients.initialWater}g water (reserve ${ingredients.reserveWater}g)</li>
-          <li>Mix with wet hands until no dry bits remain</li>
-          <li>Cover and rest 4 pomodoros (100 minutes)</li>
-        </ul>
-      `,
-    });
-
-    // Step 1.5: Mix
-    steps.push({
-      title: 'POMODORO 4 - Mix',
-      timing: this.formatPomodoro(4),
-      activeTime: '3 minutes',
-      description: `
-        <p><strong>Stay in the bowl.</strong></p>
-        <ul>
-          <li>Add ${ingredients.starter}g starter, ${ingredients.salt}g salt, ${ingredients.reserveWater}g water</li>
-          <li>Pinch and fold in the bowl until incorporated</li>
-          <li>Cover</li>
-          <li>Refill starter jar with 100g flour + water, return to fridge</li>
-        </ul>
-      `,
-    });
-
-    // Stretch & Fold sets
-    const foldStarts = [5, 6, 7, 8];
-    foldStarts.forEach((start, index) => {
-      steps.push({
-        title: `POMODORO ${start} - Stretch & Fold ${index + 1}`,
-        timing: this.formatPomodoro(start),
-        activeTime: '1 minute',
-        description: `
-          <p><strong>In the bowl:</strong> wet hands, grab edge, stretch up, fold to center. Rotate bowl, repeat 4 times. Cover.</p>
-          ${index === 3 ? '<div class="step-notes"><strong>Last fold. Now hands off.</strong></div>' : ''}
-        `,
-      });
-    });
-
-    // Bulk Fermentation
-    steps.push({
-      title: 'POMODOROS 9-29 - Bulk Fermentation',
-      timing: '12-29 pomodoros (5-12 hours)',
-      activeTime: '0 minutes',
-      description: `
-        <p>Room temp (18-22°C): 5-7 hours until 30-40% larger with surface bubbles.</p>
-        <p>OR cold (3-5°C): 8-12 hours in fridge.</p>
-      `,
-    });
-
-    // Shape
-    steps.push({
-      title: 'POMODORO ~30 - Shape',
-      timing: 'After bulk fermentation',
-      activeTime: '3 minutes',
-      description: `
-        <ul>
-          <li>Flour counter, turn out dough gently</li>
-          <li>Shape with surface tension, into banneton seam-up</li>
-        </ul>
-      `,
-    });
-
-    // Final Proof
-    steps.push({
-      title: 'POMODORO ~31 - Final Proof',
-      timing: '5-38 pomodoros (2-16 hours)',
-      activeTime: '0 minutes',
-      description: `
-        <p>Room temp: 2-3 hours until jiggly and domed.</p>
-        <p>OR cold: 8-16 hours in fridge.</p>
-      `,
-    });
-
-    // Bake
-    steps.push({
-      title: 'POMODORO ~35-70 - Bake',
-      timing: 'After final proof',
-      activeTime: '3 minutes',
-      description: `
-        <ul>
-          <li>Preheat oven + Dutch oven to 250°C (1 pomodoro)</li>
-          <li>Score loaf, bake covered 1 pomodoro at 250°C</li>
-          <li>Uncover, drop to 230°C, bake 1-2 pomodoros until deep brown</li>
-        </ul>
-      `,
-    });
-
-    return steps;
-  }
 
   calculateRecipe() {
     const ingredients = this.calculateIngredients();
@@ -329,12 +199,6 @@ class BreadCalculator {
 
     // Generate ingredients list
     this.renderIngredients(ingredients);
-
-    // Generate protocol steps
-    this.renderProtocol(ingredients);
-
-    // Show recipe output
-    document.getElementById('recipe-output').style.display = 'block';
 
     // Scroll to recipe
     document.getElementById('recipe-output').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -383,27 +247,6 @@ class BreadCalculator {
 
 
     ingredientsDiv.innerHTML = html;
-  }
-
-  renderProtocol(ingredients) {
-    const protocolDiv = document.getElementById('protocol-steps');
-    const steps = this.generateProtocolSteps(ingredients);
-
-    let html = '';
-    steps.forEach(step => {
-      html += `
-        <div class="protocol-step">
-          <div class="step-header">
-            <div class="step-title">${step.title}</div>
-            <div class="step-timing">${step.timing}</div>
-          </div>
-          ${step.activeTime ? `<div class="step-active-time">⏱️ ${step.activeTime}</div>` : ''}
-          <div class="step-description">${step.description}</div>
-        </div>
-      `;
-    });
-
-    protocolDiv.innerHTML = html;
   }
 }
 
