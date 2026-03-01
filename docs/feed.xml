@@ -6,8 +6,18 @@
     <link>https://noisewrangler.art/</link>
     <atom:link href="https://noisewrangler.art/feed.xml" rel="self" type="application/rss+xml" />
     <language>en-us</language>
-    <lastBuildDate>Fri, 12 Sep 2025 06:22:14 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 01 Mar 2026 13:47:23 GMT</lastBuildDate>
     <generator>Noise Wrangler RSS Generator</generator>
+
+    <item>
+        <title>The AI Archetype Council</title>
+        <description>A multi-agent ideation system where tradition-rooted archetypes challenge your thinking — and evolve with you over time.</description>
+        <link>https://noisewrangler.art/articles/ai-archetype-council/</link>
+        <guid>https://noisewrangler.art/articles/ai-archetype-council/</guid>
+        <pubDate>Sun, 01 Mar 2026 12:00:00 GMT</pubDate>
+        <category>Presques Riens</category>
+        <enclosure url="https://noisewrangler.art/media/ai-archetype-council.jpg" type="image/jpeg" length="0" />
+    </item>
 
     <item>
         <title>World TLDR - August 2025</title>

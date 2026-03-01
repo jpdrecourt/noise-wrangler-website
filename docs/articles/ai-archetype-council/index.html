@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A multi-agent ideation system where tradition-rooted archetypes challenge your thinking — and evolve with you over time."
+    />
+    <link rel="stylesheet" href="../../css/style.css" />
+    <title>The AI Archetype Council - Noise Wrangler</title>
+    <meta
+      property="og:title"
+      content="The AI Archetype Council - Noise Wrangler"
+    />
+    <meta
+      property="og:description"
+      content="A multi-agent ideation system where tradition-rooted archetypes challenge your thinking — and evolve with you over time."
+    />
+    <meta
+      property="og:image"
+      content="https://noisewrangler.art/media/ai-archetype-council.jpg"
+    />
+    <meta
+      property="og:url"
+      content="https://noisewrangler.art/articles/ai-archetype-council/"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Noise Wrangler" />
+    <meta
+      property="article:published_time"
+      content="2026-03-01T12:00:00.000Z"
+    />
+  </head>
+  <body class="body">
+    <header>
+      <div class="header-content">
+        <a href="https://noisewrangler.art">
+          <div id="title">
+            <img
+              id="logo"
+              src="../../media/Noise-Wrangler-logo-rounded.svg"
+              alt="Noise Wrangler Logo"
+            />
+            <div id="title-text">
+              <h1>Noise Wrangler</h1>
+
+              <div class="byline">
+                <span>Sonic Explorations</span>
+                <span class="by-name">by Jean-Philippe Drecourt</span>
+              </div>
+            </div>
+          </div>
+        </a>
+        <div class="header-block-diagram">
+          <img
+            src="../../media/fishy-metro-square.png"
+            alt="Sound synthesis block diagram"
+          />
+        </div>
+        <div class="header-image">
+          <img
+            src="../../media/20241220_015_Barreiro-Improvised-AMAC_cred_VeraMarmelo.JPG"
+            alt="Jean-Philippe Drecourt performing live"
+          />
+        </div>
+      </div>
+
+      <nav class="main-nav">
+        <ul class="nav-menu">
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li>
+            <a href="../../presques-riens.html" class="nav-link"
+              >Presques Riens</a
+            >
+          </li>
+          <li><a href="../../about.html" class="nav-link">Biography</a></li>
+          <li>
+            <a href="../../feed.xml" class="nav-link">RSS</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <article>
+      <h2>The AI Archetype Council</h2>
+
+      <div class="article-content">
+        <p>
+          <em>Multiple AI agents, each rooted in a different intellectual
+          tradition, challenge your thinking in parallel. The voices evolve
+          with every session.</em>
+        </p>
+
+        <div class="protocol-section">
+          <h3 id="get-it">Get it</h3>
+          <ol>
+            <li>
+              <strong>Download</strong> from
+              <a href="https://github.com/jpdrecourt/AI-Archetype-Council">
+                github.com/jpdrecourt/AI-Archetype-Council</a>
+            </li>
+            <li>
+              <strong>Copy</strong> the <code>commands/</code> and
+              <code>skills/</code> folders into your project's
+              <code>.claude/</code> directory (or <code>~/.claude/</code>
+              for global access)
+            </li>
+            <li>
+              <strong>Run</strong> <code>/council Your topic here</code>
+            </li>
+          </ol>
+          <p>
+            MIT licensed. Built for
+            <a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code</a>,
+            adaptable to any multi-agent AI setup.
+          </p>
+        </div>
+
+        <h3 id="what-it-does">What it does</h3>
+        <p>
+          You give the council a topic. A Convener selects 3-4 voices from
+          a pool of ten archetypes. Each voice runs as an independent AI agent
+          with its own worldview. They respond in parallel, turn by turn. You
+          react, they respond again. The same question looks different to
+          The Engineer (systems, constraints, feedback loops) and The Hermit
+          (what if you did less?).
+        </p>
+        <p>
+          The voices don't share context within a turn. This independence is
+          what produces actual diversity of perspective.
+        </p>
+
+        <h3 id="the-voices">The voices</h3>
+        <ul>
+          <li><strong>Engineer</strong>: systems thinking, cybernetics, constraints</li>
+          <li><strong>Alchemist</strong>: transformation stages, what must break down first</li>
+          <li><strong>Craftsperson</strong>: embodied practice, prototyping, material resistance</li>
+          <li><strong>Critic</strong>: art-historical context, lineage, who came before</li>
+          <li><strong>Child</strong>: pre-categorical perception, "but why?"</li>
+          <li><strong>Griot</strong>: oral tradition, cycles, the story underneath</li>
+          <li><strong>Hermit</strong>: subtraction, silence, what's already sufficient</li>
+          <li><strong>Phenomenologist</strong>: lived experience before theory</li>
+          <li><strong>Spirit Walker</strong>: non-human agencies, what the material wants</li>
+        </ul>
+
+        <h3 id="voices-that-evolve">Voices that evolve</h3>
+        <p>
+          AI models are stateless. Every conversation starts from zero. The
+          council's voice definitions live in plain text files that persist
+          between sessions. After each conversation, the system reviews what
+          happened and updates the voice files: blind spots get corrected,
+          framings get sharpened, lessons from the user get recorded.
+        </p>
+        <p>
+          This feedback loop builds something like personality over time. After
+          20 sessions, The Craftsperson knows when a limitation lives in the
+          design, not in the hands. The Convener knows that philosophical
+          insights work better reframed as design methodology. Your council
+          diverges from mine, shaped by different questions and different
+          corrections.
+        </p>
+
+        <h3 id="make-it-yours">Make it yours</h3>
+        <p>
+          These voices serve my practice as a sound artist and generative
+          systems designer. Swap them. Give them names. Make them
+          domain-specific. Add new voices by dropping a markdown file in the
+          <code>voices/</code> folder. The format is simple: a tradition, an
+          attention pattern, a distrust, a core question, and a couple of
+          paragraphs on how the voice thinks.
+        </p>
+
+        <h3 id="cost">Cost</h3>
+        <p>
+          Each voice runs on Claude Sonnet with a compact prompt (around 800
+          words) and returns 2-3 sentences per turn. The independence
+          constraint keeps costs down: each agent has a small context window.
+          Only the Convener accumulates the full session history. A typical
+          session costs less than a single long conversation with a frontier
+          model.
+        </p>
+
+        <p>
+          <em>Written with Claude Opus on March 1, 2026.</em>
+        </p>
+        <p>
+          <em>Header image:
+          <a href="https://commons.wikimedia.org/wiki/File:Constructive_interference.jpg"
+            >Constructive interference</a>
+          by Scott Robinson, Rockville, MD, USA.
+          <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a>,
+          via Wikimedia Commons.</em>
+        </p>
+      </div>
+    </article>
+
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img
+            class="footer-img"
+            src="../../media/Noise-Wrangler-logo-rounded.svg"
+            alt="Noise Wrangler Logo"
+          />
+        </div>
+        <div class="footer-social">
+          <a
+            href="https://noisewrangler.bandcamp.com/"
+            aria-label="Noise Wrangler Bandcamp"
+            >Bandcamp (NW)</a
+          >
+          <a
+            href="https://jpdrecourt.bandcamp.com/"
+            aria-label="Drecourt Bandcamp"
+            >Bandcamp (JPD)</a
+          >
+          <a
+            href="https://www.instagram.com/noise_wrangler/"
+            aria-label="Instagram"
+            >Instagram</a
+          >
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <p>&copy; 2025 Jean-Philippe Drecourt. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
