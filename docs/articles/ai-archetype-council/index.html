@@ -181,8 +181,33 @@
           model.
         </p>
 
+        <h3 id="update-march-2026">Update — March 7, 2026</h3>
         <p>
-          <em>Written with Claude Opus on March 1, 2026.</em>
+          After a few sessions I reworked the voice mechanics. The original
+          version re-launches each voice from scratch every turn — simple and
+          cheap. The new version makes voices <strong>persistent</strong>:
+          launched once, then resumed across turns via their agent ID. Each
+          voice remembers its own reasoning chain, not just a summary of
+          what came before. This makes multi-turn sessions noticeably
+          sharper — voices build on their own thinking and engage with each
+          other's specific claims rather than reacting to summaries.
+        </p>
+        <p>
+          The new version also adds <strong>reaction rounds</strong> (an
+          optional intra-turn exchange when genuine disagreement surfaces)
+          and explicit instructions for cross-voice engagement — challenging,
+          building on, or naming convergence between positions. It costs more
+          tokens over long sessions, but the deliberation quality is worth it.
+        </p>
+        <p>
+          Both versions are now in the repo: <code>/council</code>
+          (persistent) and <code>/council-lite</code> (stateless). The
+          <a href="https://github.com/jpdrecourt/AI-Archetype-Council#two-versions">README</a>
+          has a comparison table.
+        </p>
+
+        <p>
+          <em>Written with Claude Opus on March 1, 2026. Updated March 7, 2026.</em>
         </p>
         <p>
           <em>The multi-agent advisory board concept was inspired by
