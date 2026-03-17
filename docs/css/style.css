@@ -30,7 +30,7 @@ body {
 
 /* Header styles for split design */
 header {
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
   position: relative;
   overflow: visible;
 }
@@ -218,6 +218,10 @@ header > a:active * {
 
 /* Small mobile breakpoint - improved from original */
 @media (width <= 500px) {
+  header {
+    margin-bottom: 1rem;
+  }
+
   .header-content::after {
     height: 370px;
   }
@@ -437,6 +441,7 @@ h2 {
 
 .nav-menu {
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-start;
   gap: 2rem;
   list-style: none;
@@ -469,6 +474,7 @@ h2 {
   padding: 0.5rem 1rem;
   border-radius: 4px;
   transition: background-color 0.2s ease;
+  white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -507,6 +513,7 @@ h2 {
 @media (width <= 500px) {
   .nav-menu {
     gap: 0.8rem;
+    justify-content: center;
   }
 
   .nav-link {
@@ -535,6 +542,56 @@ h2 {
     font-size: 0.8rem;
     padding: 0.2rem 0.4rem;
   }
+}
+
+/* Hero intro */
+.hero-intro {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #555;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.hero-intro::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(90deg, var(--fg-color), transparent);
+  opacity: 0.3;
+}
+
+.hero-intro a {
+  color: var(--fg-color);
+  font-weight: 500;
+}
+
+@media (width <= 768px) {
+  .hero-intro {
+    font-size: 1.05rem;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (width <= 500px) {
+  .hero-intro {
+    font-size: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1.25rem;
+  }
+}
+
+/* Now page */
+.now-updated {
+  font-size: 1rem;
+  color: #888;
+  font-style: italic;
+  margin-bottom: 2rem;
 }
 
 /* Articles grid */
