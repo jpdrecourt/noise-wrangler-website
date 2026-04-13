@@ -6,8 +6,18 @@
     <link>https://noisewrangler.art/</link>
     <atom:link href="https://noisewrangler.art/feed.xml" rel="self" type="application/rss+xml" />
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 Mar 2026 13:47:23 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 13 Apr 2026 09:39:54 GMT</lastBuildDate>
     <generator>Noise Wrangler RSS Generator</generator>
+
+    <item>
+        <title>Vault Search</title>
+        <description>Local hybrid search over markdown vaults. Combines FAISS vector similarity with BM25 keyword matching, all running on your machine.</description>
+        <link>https://noisewrangler.art/articles/vault-search/</link>
+        <guid>https://noisewrangler.art/articles/vault-search/</guid>
+        <pubDate>Mon, 13 Apr 2026 12:00:00 GMT</pubDate>
+        <category>Presques Riens</category>
+        <enclosure url="https://noisewrangler.art/media/vault-search.jpg" type="image/jpeg" length="0" />
+    </item>
 
     <item>
         <title>The AI Archetype Council</title>

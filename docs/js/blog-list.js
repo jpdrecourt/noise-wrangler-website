@@ -2,6 +2,7 @@
 const articles = [
   // Add blog entries here as they're created
   // Example: 'first-blog-post',
+  'vault-search',
   'ai-archetype-council',
   'wash-away-pesticides',
   'world-tldr-2508',

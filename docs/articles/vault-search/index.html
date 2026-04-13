@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Local hybrid search over markdown vaults. Combines FAISS vector similarity with BM25 keyword matching, all running on your machine."
+    />
+    <link rel="stylesheet" href="../../css/style.css" />
+    <title>Vault Search - Noise Wrangler</title>
+    <meta
+      property="og:title"
+      content="Vault Search - Noise Wrangler"
+    />
+    <meta
+      property="og:description"
+      content="Local hybrid search over markdown vaults. Combines FAISS vector similarity with BM25 keyword matching, all running on your machine."
+    />
+    <meta
+      property="og:image"
+      content="https://noisewrangler.art/media/vault-search.jpg"
+    />
+    <meta
+      property="og:url"
+      content="https://noisewrangler.art/articles/vault-search/"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Noise Wrangler" />
+    <meta
+      property="article:published_time"
+      content="2026-04-13T12:00:00.000Z"
+    />
+  </head>
+  <body class="body">
+    <header>
+      <div class="header-content">
+        <a href="https://noisewrangler.art">
+          <div id="title">
+            <img
+              id="logo"
+              src="../../media/Noise-Wrangler-logo-rounded.svg"
+              alt="Noise Wrangler Logo"
+            />
+            <div id="title-text">
+              <h1>Noise Wrangler</h1>
+
+              <div class="byline">
+                <span>Sonic Explorations</span>
+                <span class="by-name">by Jean-Philippe Drecourt</span>
+              </div>
+            </div>
+          </div>
+        </a>
+        <div class="header-block-diagram">
+          <img
+            src="../../media/fishy-metro-square.png"
+            alt="Sound synthesis block diagram"
+          />
+        </div>
+        <div class="header-image">
+          <img
+            src="../../media/20241220_015_Barreiro-Improvised-AMAC_cred_VeraMarmelo.JPG"
+            alt="Jean-Philippe Drecourt performing live"
+          />
+        </div>
+      </div>
+
+      <nav class="main-nav">
+        <ul class="nav-menu">
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li>
+            <a href="../../presques-riens.html" class="nav-link"
+              >Presques Riens</a
+            >
+          </li>
+          <li><a href="../../about.html" class="nav-link">Biography</a></li>
+          <li><a href="../../now.html" class="nav-link">Now</a></li>
+          <li>
+            <a href="../../feed.xml" class="nav-link">RSS</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <article>
+      <h2>Vault Search</h2>
+
+      <div class="article-content">
+        <p>
+          <em>Hybrid semantic and keyword search over markdown vaults,
+          running locally.</em>
+        </p>
+
+        <div class="protocol-section">
+          <h3 id="get-it">Get it</h3>
+          <ol>
+            <li>
+              <strong>Clone</strong> from
+              <a href="https://github.com/jpdrecourt/vault-search">
+                github.com/jpdrecourt/vault-search</a>
+            </li>
+            <li>
+              <strong>Install</strong> dependencies:
+              <code>pip install -r requirements.txt</code>
+            </li>
+            <li>
+              <strong>Edit</strong> <code>config.json</code> to point at
+              your notes directory, then <strong>index</strong>:
+              <code>python indexer.py</code>
+            </li>
+            <li>
+              <strong>Search</strong>:
+              <code>python search.py "your query" --top_k 10</code>
+            </li>
+          </ol>
+          <p>
+            Python 3.11+. GPU optional (falls back to CPU).
+            MIT licensed.
+          </p>
+        </div>
+
+        <h3 id="the-problem">The problem</h3>
+        <p>
+          I have around 600 notes in an Obsidian vault. Full-text search
+          finds exact words. It misses concepts. Searching for "feedback
+          in performance" won't surface a note about audience response
+          shaping improvisation decisions, even though that's exactly what
+          I'm looking for.
+        </p>
+
+        <h3 id="two-searches-one-score">Two searches, one score</h3>
+        <p>
+          The tool runs two searches in parallel. FAISS handles semantic
+          similarity: it embeds your query and every chunk of text into
+          768-dimensional vectors, then finds the closest matches by
+          meaning. BM25 handles keyword matching: the classic
+          information-retrieval algorithm that ranks documents by term
+          frequency.
+        </p>
+        <p>
+          Both scores get normalised and fused into a single ranking. The
+          balance is adjustable (the <code>--alpha</code> flag), defaulting
+          to 60% semantic, 40% keyword. This catches both conceptual
+          neighbours and exact term matches that pure vector search misses.
+        </p>
+
+        <h3 id="incremental-indexing">Incremental indexing</h3>
+        <p>
+          The indexer tracks file checksums. On a typical run it only
+          re-embeds new or modified files, finishing in a few seconds.
+          A full rebuild of ~600 notes takes about 30 seconds on GPU.
+        </p>
+
+        <h3 id="plugging-it-into-claude-code">Plugging it into Claude Code</h3>
+        <p>
+          I use this through a
+          <a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code</a>
+          skill: a small markdown file that tells Claude how to call the
+          search script. When I ask about a topic that might be in my
+          notes, Claude runs the search, reads the top results, and
+          brings that context into the conversation. No server process,
+          no protocol layer. The repo also includes an MCP server for
+          setups that prefer that route.
+        </p>
+
+        <p>
+          <em>Written with Claude Opus on April 13, 2026.</em>
+        </p>
+        <p>
+          <em>Header image:
+          <a href="https://commons.wikimedia.org/wiki/File:Physarum_polycephalum_exploration_2.jpg"
+            >Physarum polycephalum exploration</a>
+          by Tim Tim.
+          <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>,
+          via Wikimedia Commons.</em>
+        </p>
+      </div>
+    </article>
+
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img
+            class="footer-img"
+            src="../../media/Noise-Wrangler-logo-rounded.svg"
+            alt="Noise Wrangler Logo"
+          />
+        </div>
+        <div class="footer-social">
+          <a
+            href="https://noisewrangler.bandcamp.com/"
+            aria-label="Noise Wrangler Bandcamp"
+            >Bandcamp (NW)</a
+          >
+          <a
+            href="https://jpdrecourt.bandcamp.com/"
+            aria-label="Drecourt Bandcamp"
+            >Bandcamp (JPD)</a
+          >
+          <a
+            href="https://www.instagram.com/noise_wrangler/"
+            aria-label="Instagram"
+            >Instagram</a
+          >
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <p>&copy; 2025 Jean-Philippe Drecourt. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
