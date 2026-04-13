@@ -2,6 +2,16 @@ Write a new Presques Riens blog post. Topic: $ARGUMENTS
 
 If no topic was provided, ask: "What should this post be about?"
 
+## Editorial guidance
+
+Load and follow the `/collaborative-writing` skill for all editorial
+decisions: stance, workflow phases, writing discipline, and voice.
+
+Blog-specific addition: **solution first.** If the post has something
+actionable (a tool, a recipe, a method), put it at the top in a
+highlighted box using `<div class="protocol-section">`. The reader
+should be able to act on the post without scrolling.
+
 ## Process
 
 1. **Discuss first.** Ask the user what the post should cover, what the
@@ -36,23 +46,13 @@ OG meta tags). Copy the structure from any post in `docs/articles/`.
 
 The OG image won't exist yet. Note it as a TODO for the user.
 
-## Editorial voice
+### HTML conventions
 
-- **Solution first.** If the post has something actionable (a tool, a
-  recipe, a method), put it at the top in a highlighted box using
-  `<div class="protocol-section">`. The reader should be able to act
-  on the post without scrolling.
-- **Affirmative tone.** Say what things are, not what they aren't.
-  Avoid "rather", "instead of", "not X but Y" constructions.
-- **No em-dashes.** Use commas, periods, or restructure the sentence.
-- **Short paragraphs.** 2-4 sentences. One idea per paragraph.
-- **Scannable structure.** Use `<h3>` sections with `id` attributes.
-  Use bulleted or numbered lists when listing things.
-- **No fluff.** Cut qualifiers, hedges, and filler. If a sentence
-  doesn't add information, remove it.
-- **Attribution at the bottom.** End with an italic line crediting
-  collaboration: `Written with [model] on [date].` Add image credits
-  if applicable.
+- `<h3>` sections with `id` attributes for scannability
+- Short paragraphs (2-4 sentences, one idea each)
+- No em-dashes (use commas, periods, or restructure)
+- Attribution at the bottom in italics: `Written with [model] on [date].`
+  Add image credits if applicable.
 
 ## Image
 
