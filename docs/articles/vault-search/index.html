@@ -123,10 +123,10 @@
         <h3 id="the-problem">The problem</h3>
         <p>
           I have around 600 notes in an Obsidian vault. Full-text search
-          finds exact words. It misses concepts. Searching for "feedback
-          in performance" won't surface a note about audience response
-          shaping improvisation decisions, even though that's exactly what
-          I'm looking for.
+          finds exact words. Searching for "feedback in performance"
+          should surface a note about audience response shaping
+          improvisation decisions. Full-text search can't make that
+          connection. Semantic search can.
         </p>
 
         <h3 id="two-searches-one-score">Two searches, one score</h3>
@@ -156,12 +156,17 @@
         <p>
           I use this through a
           <a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code</a>
-          skill: a small markdown file that tells Claude how to call the
-          search script. When I ask about a topic that might be in my
-          notes, Claude runs the search, reads the top results, and
-          brings that context into the conversation. No server process,
-          no protocol layer. The repo also includes an MCP server for
-          setups that prefer that route.
+          skill. When I ask about a topic that might be in my notes,
+          Claude runs the search, reads the top results, and brings that
+          context into the conversation. The repo also includes an MCP
+          server for setups that prefer that route.
+        </p>
+        <p>
+          This is token-friendly by design. The embedding and ranking
+          happen locally on your machine. Claude never sees 600 notes.
+          It sees a handful of scored excerpts, reads the ones that
+          matter, and moves on. The heavy lifting stays outside the
+          context window.
         </p>
 
         <p>

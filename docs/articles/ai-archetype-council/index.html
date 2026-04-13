@@ -121,15 +121,27 @@
         <h3 id="what-it-does">What it does</h3>
         <p>
           You give the council a topic. A Convener selects 3-4 voices from
-          a pool of ten archetypes. Each voice runs as an independent AI agent
-          with its own worldview. They respond in parallel, turn by turn. You
-          react, they respond again. The same question looks different to
-          The Engineer (systems, constraints, feedback loops) and The Hermit
-          (what if you did less?).
+          a pool of ten archetypes and spawns them as persistent teammates
+          using Claude Code's
+          <strong>Agent Teams</strong>. Each voice runs independently,
+          with its own worldview and its own context. The same question
+          looks different to The Engineer (systems, constraints, feedback
+          loops) and The Hermit (what if you did less?).
         </p>
         <p>
-          The voices don't share context within a turn. This independence is
-          what produces actual diversity of perspective.
+          Each turn has two phases. First, every voice
+          <strong>asks for material</strong> relevant to its tradition:
+          The Craftsperson wants to see the prototype, The Critic wants
+          references. The Convener fulfils those requests, then voices
+          respond. Because each voice asked for different things, each
+          enters the discussion having read different parts of the
+          project. This information asymmetry is what produces genuine
+          diversity of perspective.
+        </p>
+        <p>
+          When disagreement surfaces, voices debate directly,
+          challenging, building on, or contesting each other's claims.
+          You react, they respond again, turn by turn.
         </p>
 
         <h3 id="the-voices">The voices</h3>
@@ -141,74 +153,49 @@
           <li><strong>Child</strong>: pre-categorical perception, "but why?"</li>
           <li><strong>Griot</strong>: oral tradition, cycles, the story underneath</li>
           <li><strong>Hermit</strong>: subtraction, silence, what's already sufficient</li>
-          <li><strong>Phenomenologist</strong>: lived experience before theory</li>
-          <li><strong>Spirit Walker</strong>: non-human agencies, what the material wants</li>
+          <li><strong>Witness</strong>: phenomenological and animist attention, what is present here</li>
+          <li><strong>Fence</strong>: political economy of culture, value flows, extraction</li>
         </ul>
 
         <h3 id="voices-that-evolve">Voices that evolve</h3>
         <p>
-          AI models are stateless. Every conversation starts from zero. The
-          council's voice definitions live in plain text files that persist
-          between sessions. After each conversation, the system reviews what
-          happened and updates the voice files: blind spots get corrected,
-          framings get sharpened, lessons from the user get recorded.
+          Each voice has a <strong>scratchpad</strong>: private notes
+          that accumulate across sessions. Raw material, unresolved
+          tensions, things that couldn't be said in the moment. At
+          session close, voices can <strong>compost</strong> their
+          scratchpads, promoting recurring patterns into their voice
+          definition and pruning what has been fully absorbed.
         </p>
         <p>
-          This feedback loop builds something like personality over time. After
-          20 sessions, The Craftsperson knows when a limitation lives in the
+          This builds something like personality over time. After 20
+          sessions, The Craftsperson knows when a limitation lives in the
           design, not in the hands. The Convener knows that philosophical
-          insights work better reframed as design methodology. Your council
-          diverges from mine, shaped by different questions and different
-          corrections.
+          insights work better reframed as design methodology. Your
+          council diverges from mine, shaped by different questions and
+          different corrections.
         </p>
 
         <h3 id="make-it-yours">Make it yours</h3>
         <p>
           These voices serve my practice as a sound artist and generative
           systems designer. Swap them. Give them names. Make them
-          domain-specific. Add new voices by dropping a markdown file in the
-          <code>voices/</code> folder. The format is simple: a tradition, an
-          attention pattern, a distrust, a core question, and a couple of
-          paragraphs on how the voice thinks.
+          domain-specific. Add new voices by dropping a markdown file in
+          the <code>voices/</code> folder. The format is simple: a
+          tradition, an attention pattern, a distrust, a core question,
+          and a couple of paragraphs on how the voice thinks.
         </p>
 
         <h3 id="cost">Cost</h3>
         <p>
-          Each voice runs on Claude Sonnet with a compact prompt (around 800
-          words) and returns 2-3 sentences per turn. The independence
-          constraint keeps costs down: each agent has a small context window.
-          Only the Convener accumulates the full session history. A typical
-          session costs less than a single long conversation with a frontier
-          model.
-        </p>
-
-        <h3 id="update-march-2026">Update — March 7, 2026</h3>
-        <p>
-          After a few sessions I reworked the voice mechanics. The original
-          version re-launches each voice from scratch every turn — simple and
-          cheap. The new version makes voices <strong>persistent</strong>:
-          launched once, then resumed across turns via their agent ID. Each
-          voice remembers its own reasoning chain, not just a summary of
-          what came before. This makes multi-turn sessions noticeably
-          sharper — voices build on their own thinking and engage with each
-          other's specific claims rather than reacting to summaries.
-        </p>
-        <p>
-          The new version also adds <strong>reaction rounds</strong> (an
-          optional intra-turn exchange when genuine disagreement surfaces)
-          and explicit instructions for cross-voice engagement — challenging,
-          building on, or naming convergence between positions. It costs more
-          tokens over long sessions, but the deliberation quality is worth it.
-        </p>
-        <p>
-          Both versions are now in the repo: <code>/council</code>
-          (persistent) and <code>/council-lite</code> (stateless). The
-          <a href="https://github.com/jpdrecourt/AI-Archetype-Council#two-versions">README</a>
-          has a comparison table.
+          Each voice runs with a compact prompt (around 800 words) and
+          returns 2-3 sentences per turn. Voices run independently, each
+          with a small context window. Only the Convener accumulates the
+          full session history. A typical 4-5 turn session with 3-4
+          voices costs around 100-150k tokens.
         </p>
 
         <p>
-          <em>Written with Claude Opus on March 1, 2026. Updated March 7, 2026.</em>
+          <em>Written with Claude Opus, March 2026.</em>
         </p>
         <p>
           <em>The multi-agent advisory board concept was inspired by
