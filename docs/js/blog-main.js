@@ -67,17 +67,40 @@ async function loadArticlesList() {
 }
 
 // Create blog item element
-function createBlogItem(title, description, articleUrl) {
+function createBlogItem(title, description, articleUrl, imageUrl) {
   const item = document.createElement('a')
   item.className = 'blog-item'
   item.href = articleUrl
 
+  const thumbHtml = imageUrl
+    ? `<img class="blog-item-thumb" src="${imageUrl}" alt="" loading="lazy" />`
+    : ''
+
   item.innerHTML = `
-    <h3>${title}</h3>
-    <p class="blog-description">${description}</p>
+    ${thumbHtml}
+    <div class="blog-item-text">
+      <h3>${title}</h3>
+      <p class="blog-description">${description}</p>
+    </div>
   `
 
   return item
+}
+
+// Extract image URL from Open Graph meta tag
+function extractImage(doc) {
+  const ogImage = doc.querySelector('meta[property="og:image"]')
+  if (ogImage && ogImage.getAttribute('content')) {
+    const url = ogImage.getAttribute('content')
+    // Convert absolute URL to relative path
+    try {
+      const parsed = new URL(url)
+      return parsed.pathname.replace(/^\//, '')
+    } catch {
+      return url
+    }
+  }
+  return null
 }
 
 // Extract description from Open Graph meta tags or fallback to content
@@ -174,11 +197,13 @@ async function loadNextBatch() {
 
         const title = extractTitle(doc)
         const description = extractDescription(doc)
+        const imageUrl = extractImage(doc)
 
         const blogItem = createBlogItem(
           title,
           description,
-          `${articlesDirectory}${articleFolder}/`
+          `${articlesDirectory}${articleFolder}/`,
+          imageUrl
         )
 
         articlesGrid.appendChild(blogItem)

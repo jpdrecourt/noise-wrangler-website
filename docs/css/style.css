@@ -387,6 +387,28 @@ h2 {
   margin-bottom: 0.5rem;
 }
 
+/* Image credit at bottom of article */
+.image-credit {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.image-credit img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.image-credit p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
 /* Protocol section styling - recipe-like appearance */
 .protocol-section {
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
@@ -610,12 +632,34 @@ h2 {
 }
 
 .blog-item {
-  display: block;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
   padding: 1.5rem 0;
   text-decoration: none;
   color: inherit;
   transition: background-color 0.2s ease;
   position: relative;
+}
+
+.blog-item-thumb {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.blog-item-text {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (width >= 600px) {
+  .blog-item-thumb {
+    width: 80px;
+    height: 80px;
+  }
 }
 
 .blog-item::after {
