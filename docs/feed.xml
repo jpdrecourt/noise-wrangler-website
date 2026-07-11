@@ -6,8 +6,18 @@
     <link>https://noisewrangler.art/</link>
     <atom:link href="https://noisewrangler.art/feed.xml" rel="self" type="application/rss+xml" />
     <language>en-us</language>
-    <lastBuildDate>Sat, 11 Jul 2026 21:44:11 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 11 Jul 2026 21:50:46 GMT</lastBuildDate>
     <generator>Noise Wrangler RSS Generator</generator>
+
+    <item>
+        <title>Now — July 2026</title>
+        <description>What Jean-Philippe Drecourt is working on — July 2026.</description>
+        <link>https://noisewrangler.art/now-2026-07.html</link>
+        <guid>https://noisewrangler.art/now-2026-07.html</guid>
+        <pubDate>Wed, 01 Jul 2026 12:00:00 GMT</pubDate>
+        <category>Now</category>
+        <enclosure url="https://noisewrangler.art/media/20241220_015_Barreiro-Improvised-AMAC_cred_VeraMarmelo.JPG" type="image/jpeg" length="0" />
+    </item>
 
     <item>
         <title>Vault Search</title>
@@ -27,6 +37,16 @@
         <pubDate>Sun, 01 Mar 2026 12:00:00 GMT</pubDate>
         <category>Presques Riens</category>
         <enclosure url="https://noisewrangler.art/media/ai-archetype-council.jpg" type="image/jpeg" length="0" />
+    </item>
+
+    <item>
+        <title>Now — March 2026</title>
+        <description>What Jean-Philippe Drecourt was working on — March 2026.</description>
+        <link>https://noisewrangler.art/now-2026-03.html</link>
+        <guid>https://noisewrangler.art/now-2026-03.html</guid>
+        <pubDate>Sun, 01 Mar 2026 12:00:00 GMT</pubDate>
+        <category>Now</category>
+        <enclosure url="https://noisewrangler.art/media/20241220_015_Barreiro-Improvised-AMAC_cred_VeraMarmelo.JPG" type="image/jpeg" length="0" />
     </item>
 
     <item>

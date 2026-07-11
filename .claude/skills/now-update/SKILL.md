@@ -84,24 +84,44 @@ lighter "In My Mind" / reflections area, then the now-page footer note).
   a stub, and **ask him for a few sentences of raw material**, then clean up
   without rewriting. (per `feedback_collaborative_writing`.)
 
-### 7. Archive the old page
-- Copy the current `docs/now.html` to `docs/now-YYYY-MM.html`, where
-  `YYYY-MM` is the **old** update's month (the cutoff month from step 1).
-- In the new `now.html`, add a small **Previously** list just above the
-  footer's `<hr>`/now-page note, linking each archived snapshot, newest
-  first, e.g.:
+### 7. Snapshot this quarter, and grow the Previously list
+Once the new `docs/now.html` is final, freeze a copy of **this** quarter — it
+is both the human archive and the RSS target (the feed syndicates snapshots,
+keyed on their dated URL, so each quarter is a distinct guid and subscribers
+get notified).
+
+- Copy the finished `docs/now.html` to `docs/now-YYYY-MM.html`, where `YYYY-MM`
+  is the **new** update's month.
+- In the snapshot only, set dated metadata so shares and feed items read well:
+  - `<title>` and `og:title` → `Now — <Month> <Year> - Noise Wrangler`
+  - `name=description` and `og:description` → a one-line dated summary
+  - `og:url` → the snapshot's own URL
+  - a snapshot banner at the top of `<section>`:
+    ```html
+    <p class="now-archive-banner">
+      Snapshot of the Now page, <Month> <Year>. For the latest, see the
+      <a href="now.html">current Now</a>.
+    </p>
+    ```
+- In the live `now.html`, add/extend the **Previously** list above the footer
+  `<hr>`, linking *prior*-quarter snapshots (not the current one), newest first:
   ```html
   <p class="now-archive">
     Previously: <a href="now-2026-03.html">March 2026</a>
   </p>
   ```
-- Preserve the `<header>`, `<nav>`, `<footer>`, and all `og:`/meta tags in
-  both files. The archived copy is frozen as-is; only the live page grows
-  the Previously list.
+- The previous quarter's snapshot already exists from its own publish — do not
+  re-archive it. Preserve `<header>`/`<nav>`/`<footer>` in every file.
 
 ### 8. Update the dateline
 Set the live page's `<p class="now-updated">Updated <Month Year>, from
 <place>.</p>` to the new month/place. Confirm the place with JP if unsure.
+
+### 9. Regenerate the RSS feed
+Run `node update-rss.cjs` (or `npm run update-rss`). It globs `docs/now-*.html`
+and emits a `Now — <Month> <Year>` item per snapshot automatically, alongside
+the articles. Check `git diff docs/feed.xml`: the new Now item should appear and
+no article dates should shift.
 
 ---
 

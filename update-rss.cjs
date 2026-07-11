@@ -74,8 +74,41 @@ function readArticleMetadata(slug, type = 'article') {
   };
 }
 
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'];
+
+// Dated Now-page snapshots (now-YYYY-MM.html). Each is an immutable record of
+// one quarter's Now page and becomes one feed item. Self-maintaining: globs the
+// docs dir, so new snapshots are picked up without editing a list.
+function readNowSnapshots() {
+  const docsDir = './docs';
+  const snapshots = [];
+  for (const file of fs.readdirSync(docsDir)) {
+    const m = file.match(/^now-(\d{4})-(\d{2})\.html$/);
+    if (!m) continue;
+    const year = parseInt(m[1], 10);
+    const month = parseInt(m[2], 10);
+    const content = fs.readFileSync(path.join(docsDir, file), 'utf8');
+    const ogDescMatch = content.match(/<meta\s+property="og:description"\s+content="([^"]*?)"/);
+    const ogImageMatch = content.match(/<meta\s+property="og:image"\s+content="([^"]*?)"/);
+    snapshots.push({
+      slug: file.replace(/\.html$/, ''),
+      title: `Now — ${MONTHS[month - 1]} ${year}`,
+      description: ogDescMatch ? ogDescMatch[1] : '',
+      type: 'now',
+      url: `https://noisewrangler.art/${file}`,
+      guid: `https://noisewrangler.art/${file}`,
+      publishedDate: new Date(Date.UTC(year, month - 1, 1, 12, 0, 0)),
+      image: ogImageMatch ? ogImageMatch[1] : ''
+    });
+  }
+  return snapshots;
+}
+
 function generateRSSItem(article) {
-  const category = article.type === 'blog' ? 'Presques Riens' : 'Music';
+  const category = article.type === 'blog' ? 'Presques Riens'
+    : article.type === 'now' ? 'Now'
+    : 'Music';
   const pubDate = article.publishedDate.toUTCString();
   
   let imageElement = '';
@@ -138,7 +171,12 @@ function updateRSSFeed() {
       allArticles.push(metadata);
     }
   });
-  
+
+  // Add dated Now-page snapshots
+  const nowSnapshots = readNowSnapshots();
+  console.log(`Found ${nowSnapshots.length} Now snapshots`);
+  nowSnapshots.forEach(snapshot => allArticles.push(snapshot));
+
   // Sort by published date (newest first)
   allArticles.sort((a, b) => b.publishedDate - a.publishedDate);
   
