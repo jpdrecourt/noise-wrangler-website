@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      name="description"
+      content="Comment j'ai conçu le Chaos Conductor, un instrument électronique qui règle des conditions au lieu de déclencher des notes, et laisse la machine choisir l'instant de chaque son."
+    />
+    <link rel="stylesheet" href="../../css/style.css" />
+    <title>Un instrument pour un humain de l'à-peu-près - Noise Wrangler</title>
+    <meta
+      property="og:title"
+      content="Un instrument pour un humain de l'à-peu-près"
+    />
+    <meta
+      property="og:description"
+      content="Un instrument électronique qui règle des conditions au lieu de déclencher des notes, et laisse la machine choisir l'instant de chaque son."
+    />
+    <meta
+      property="og:image"
+      content="https://noisewrangler.art/media/chaos-conductor-solo.jpg"
+    />
+    <meta
+      property="og:url"
+      content="https://noisewrangler.art/articles/esprit-vagabond/"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Noise Wrangler" />
+    <meta property="og:locale" content="fr_FR" />
+
+    <style>
+      /* Scoped styles for this article (chapô + captioned figure) */
+      .article-byline {
+        font-size: 0.95rem;
+        color: #777;
+        margin-bottom: 2rem;
+      }
+      figure.article-figure {
+        margin: 2.5rem 0;
+      }
+      figure.article-figure img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+      }
+      figure.article-figure figcaption {
+        font-size: 0.9rem;
+        line-height: 1.45;
+        color: #666;
+        margin-top: 0.6rem;
+      }
+      .article-content blockquote {
+        margin: 2rem 0;
+        padding-left: 1.25rem;
+        border-left: 3px solid #ccc;
+        color: #444;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body class="body">
+    <header>
+      <div class="header-content">
+        <a href="https://noisewrangler.art">
+          <div id="title">
+            <img
+              id="logo"
+              src="../../media/Noise-Wrangler-logo-rounded.svg"
+              alt="Noise Wrangler Logo"
+            />
+            <div id="title-text">
+              <h1>Noise Wrangler</h1>
+              <div class="byline">
+                <span>Sonic Explorations</span>
+                <span class="by-name">by Jean-Philippe Drecourt</span>
+              </div>
+            </div>
+          </div>
+        </a>
+        <div class="header-block-diagram">
+          <img
+            src="../../media/fishy-metro-square.png"
+            alt="Sound synthesis block diagram"
+          />
+        </div>
+        <div class="header-image">
+          <img
+            src="../../media/20241220_015_Barreiro-Improvised-AMAC_cred_VeraMarmelo.JPG"
+            alt="Jean-Philippe Drecourt performing live"
+          />
+        </div>
+      </div>
+
+      <nav class="main-nav">
+        <ul class="nav-menu">
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li>
+            <a href="../../presques-riens.html" class="nav-link"
+              >Presques Riens</a
+            >
+          </li>
+          <li><a href="../../about.html" class="nav-link">Biography</a></li>
+          <li><a href="../../now.html" class="nav-link">Now</a></li>
+          <li><a href="../../feed.xml" class="nav-link">RSS</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <article>
+      <h2>Un instrument pour un humain de l'à-peu-près</h2>
+
+      <div class="article-content">
+        <h3>Un humain de l'à-peu-près</h3>
+
+        <p>
+          J'ai compris assez tôt que je n'étais pas fait pour la guitare
+          classique. L'instrument réclame une précision du millimètre et de la
+          milliseconde, obtenue par des milliers de répétitions du même morceau.
+          Or j'ai une dextérité moyenne, et la discipline de la répétition
+          dépasse les capacités de mon esprit vagabond. Je suis gaucher et un
+          peu maladroit : deux mains gauches, au sens propre comme au figuré.
+          Ajoutez à cela une allergie tenace à refaire vingt fois le même geste,
+          et vous obtenez quelqu'un que la méthode classique décourage vite.
+        </p>
+
+        <p>
+          J'aurais pu m'obstiner, me conformer à l'instrument comme on m'y
+          invitait. J'ai fait le choix inverse : concevoir un instrument qui
+          compose avec mon imprécision. Les Anglo-Saxons ont un mot pour cette
+          qualité d'à-peu-près, «&nbsp;fuzzy&nbsp;», le flou, l'approximatif.
+          J'y tiens, parce qu'il nomme une donnée de départ. Mon imprécision
+          n'est pas un défaut à corriger. C'est une caractéristique avec
+          laquelle il faut travailler, comme un menuisier travaille avec le fil
+          du bois.
+        </p>
+
+        <p>
+          Le résultat s'appelle le Chaos Conductor. C'est un instrument de
+          musique électronique que je joue en direct, à partir de sons concrets
+          : des bruits du monde, enregistrés puis rejoués et transformés sur
+          scène. Voilà deux ans que je m'en sers, en solo et en groupe.
+        </p>
+
+        <h3>Régler des conditions, laisser la machine trancher</h3>
+
+        <p>
+          Sur un instrument ordinaire, chaque geste produit directement un son.
+          Je pince une corde, la note sonne. J'appuie sur une touche, elle
+          résonne. Ce lien direct entre le geste et le son est ce que les
+          ingénieurs appellent un contrôle de premier ordre. Il est merveilleux
+          de précision, et c'est justement là qu'il me perd : il exige que ma
+          main tombe au bon endroit à la bonne milliseconde, des milliers de
+          fois.
+        </p>
+
+        <p>
+          Le Chaos Conductor procède autrement. Je ne déclenche aucun son à la
+          main. Je règle des conditions. Je fixe par exemple une densité
+          d'événements, une probabilité qu'un son survienne, et c'est la machine
+          qui décide de l'instant exact où chaque son surgit. Un potentiomètre
+          commande la fréquence à laquelle les sons se déclenchent, du silence
+          complet jusqu'à une averse serrée. Je tourne ce bouton et je remodèle
+          un rythme que je ne peux ni contrôler dans le détail, ni rater. Je
+          façonne le comportement du son ; la machine tranche le
+          «&nbsp;quand&nbsp;».
+        </p>
+
+        <p>
+          En termes techniques, c'est un contrôle de second ordre : j'agis sur
+          les conditions dans lesquelles le système fonctionne. Cette petite
+          distance entre mon geste et le son lisse mes approximations. Là où une
+          main hésitante produirait une fausse note, elle ne produit ici qu'une
+          densité légèrement différente. L'erreur, tout simplement, n'existe
+          plus sous la forme qui me terrifiait.
+        </p>
+
+        <figure class="article-figure">
+          <img
+            src="../../media/chaos-conductor-solo.jpg"
+            alt="Jean-Philippe Drecourt jouant du Chaos Conductor, les mains sur deux contrôleurs MIDI, un écran devant lui"
+          />
+          <figcaption>
+            À ma table de jeu : les mains sur deux contrôleurs MIDI, un seul
+            écran devant moi. La main gauche règle la densité des sons, la
+            droite sélectionne les timbres sur les pads.
+          </figcaption>
+        </figure>
+
+        <h3>Un chef qui ne tient pas de partition</h3>
+
+        <p>
+          Le déclic est venu d'un concert. J'ai vu Rob Mazurek diriger
+          l'Exploding Star Orchestra, un ensemble de la scène de Chicago rompu à
+          l'improvisation libre. Mazurek ne battait pas la mesure d'une
+          partition écrite. Il mettait en forme, par des gestes, la musique
+          inédite qui émergeait du jeu collectif. Il posait un cadre et
+          déléguait l'exécution aux musiciens.
+        </p>
+
+        <p>
+          C'est exactement le rapport que j'entretiens avec mes machines. Le nom
+          de l'instrument vient de là. Là où Mazurek s'adresse à des musiciens,
+          je m'adresse à des logiciels qui produisent des sons. Je pose des
+          conditions, je délègue l'exécution, je façonne le champ des possibles
+          d'où les sons finissent par jaillir. Un instrument classique parle à
+          la première personne : je pince, je souffle. À l'autre extrémité,
+          certains programmes musicaux autonomes jouent tout seuls, à la
+          troisième personne : ils écoutent, décident, jouent, et l'humain n'est
+          plus qu'un partenaire ou un témoin. Le Chaos Conductor se tient à la
+          deuxième personne. Je m'adresse à la machine, je lui indique une
+          direction, elle répond à sa manière.
+        </p>
+
+        <h3>Barreiro, ses coquillages et son ponton</h3>
+
+        <p>
+          Tout cela reste abstrait tant qu'on n'a pas entendu de quoi c'est
+          fait. Prenons un projet concret : <em>Barreiro Improvised</em>, retenu
+          pour la bourse de création OUT.RA en 2024. Barreiro est une ville
+          industrielle de l'autre côté du Tage, face à Lisbonne. J'ai construit
+          une série de performances à partir de ses sons, enregistrés sur le
+          terrain, complétés par une archive sonore locale. Sur scène, j'étais
+          accompagné de Bruno Afonso à la batterie et de Sara Zita Correia, à la
+          batterie, à la voix et aux objets sonores. Le concert, capté après une
+          semaine de résidence à l'auditorium AMAC de Barreiro, est
+          <a href="https://youtu.be/X0EGPRQiPt8">en ligne</a>.
+        </p>
+
+        <div class="media-container">
+          <div class="video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/X0EGPRQiPt8"
+              allowfullscreen=""
+              title="Barreiro Improvised, concert à l'auditorium AMAC"
+            ></iframe>
+          </div>
+        </div>
+
+        <p>
+          Chaque son doit être préparé pour entrer dans la logique de
+          l'instrument, où il sera répété à des intervalles imprévisibles et
+          superposé à d'autres. Des couteaux raclant des coquillages, lors d'une
+          pêche collective à marée basse, sont devenus de courts éléments
+          percussifs, faits pour dialoguer avec la batterie. Les grincements et
+          les cliquetis d'un ponton métallique, à l'embarcadère du ferry, sont
+          restés de longs événements à la structure marquée, occupant le premier
+          plan. Les braises crépitantes d'un barbecue de sardines ont été
+          lissées en une nappe d'arrière-plan.
+        </p>
+
+        <p>
+          Le geste artistique se loge dans ces choix, et dans les effets que
+          j'applique. Je joue sur la tension entre le son brut et le son traité
+          : un traitement granulaire fait ressortir la texture des braises, un
+          écho rend les raclements de couteau plus organiques, un filtre
+          résonant accentue le caractère écrasant du ponton.
+        </p>
+
+        <p>
+          Le plus beau se produit dans le jeu à plusieurs. Pour l'ouverture de
+          la seconde partie, nous avons découvert que le batteur pouvait faire
+          résonner un gong. Je rééchantillonnais cette résonance en direct, je
+          la mettais en boucle, et elle devenait le fond sonore d'une bonne
+          partie du set. Il devait savoir que l'instrument était capable de
+          cela, afin de jouer réellement avec lui.
+        </p>
+
+        <blockquote>
+          «&nbsp;Je dois être plus attentif aux sons, à ce que Jean-Philippe
+          enregistre pendant que je joue et qu'il rejoue ensuite tout au long du
+          set. J'ai appris à écouter et à respecter les silences.&nbsp;»
+          <br />— Bruno Afonso
+        </blockquote>
+
+        <p>
+          Il entend sa propre batterie lui revenir, transformée, redistribuée.
+          Il écoute et répond à une matière qui est en partie la sienne.
+        </p>
+
+        <h3>Le prix à payer</h3>
+
+        <p>
+          Cet arrangement a un coût. En déléguant l'instant précis à la machine,
+          je perds une part du geste, ce contact direct entre la main et le son
+          que connaît tout instrumentiste. Certains musiciens vivent de
+          l'adrénaline de traverser une pièce sur un fil ; mon instrument est
+          conçu sans ce tranchant, parce que je n'en voulais pas. C'est un
+          choix, avec sa contrepartie.
+        </p>
+
+        <p>
+          La limite la plus nette est ailleurs. La musique est un art du temps,
+          et l'une de ses forces est la mémoire : un motif qui revient, une
+          phrase qu'on reconnaît, ancrent l'auditeur et donnent sa forme à une
+          pièce. Or chaque son du Chaos Conductor se déclenche dans son propre
+          coin, sans lien avec les autres. L'instrument sait dire où il se
+          trouve dans l'espace sonore ; il peine à dire comment il le traverse.
+          Il manipule des états, des noms en quelque sorte, la densité, la
+          fréquence, le volume. Il lui manque les verbes : se souvenir,
+          développer, construire une structure. En solo, mes premières vidéos me
+          donnent aujourd'hui l'impression de juxtaposer des sons sans but. Le
+          jeu en groupe atténue ce manque, car les autres musiciens apportent la
+          structure que l'instrument n'a pas. C'est le chantier ouvert, celui
+          auquel je travaille.
+        </p>
+
+        <h3>Retrouver la scène</h3>
+
+        <p>
+          L'essentiel, pour moi, tient en une phrase : je suis remonté sur
+          scène. Reculer du contrôle de chaque note vers le réglage des
+          conditions a supprimé l'angoisse que j'y associais. Entendre le
+          paysage sonore évoluer sous mes doigts et ajuster les densités me
+          paraît plus musical que jouer de la guitare, parce que je travaille
+          enfin avec mon à-peu-près au lieu de lutter contre lui. Mon esprit
+          vagabond y trouve son compte : curieux d'une région de l'espace
+          sonore, je peux l'explorer sur-le-champ, sans avoir à répéter mon
+          chemin pour y arriver, et repartir ailleurs dès que l'envie me prend.
+          J'ai construit un instrument qui reflète mon esprit et mon geste, et
+          qui, par ricochet, invite ceux qui jouent avec moi et mon public, à
+          écouter autrement.
+        </p>
+      </div>
+    </article>
+
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img
+            class="footer-img"
+            src="../../media/Noise-Wrangler-logo-rounded.svg"
+            alt="Noise Wrangler Logo"
+          />
+        </div>
+        <div class="footer-social">
+          <a
+            href="https://noisewrangler.bandcamp.com/"
+            aria-label="Noise Wrangler Bandcamp"
+            >Bandcamp (NW)</a
+          >
+          <a
+            href="https://jpdrecourt.bandcamp.com/"
+            aria-label="Drecourt Bandcamp"
+            >Bandcamp (JPD)</a
+          >
+          <a
+            href="https://www.instagram.com/noise_wrangler/"
+            aria-label="Instagram"
+            >Instagram</a
+          >
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <p>© 2025 Jean-Philippe Drecourt. All rights reserved.</p>
+        <p>
+          Header image by
+          <a href="https://v-miopia.blogspot.com/">Vera Marmelo</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
