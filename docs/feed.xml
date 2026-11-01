@@ -6,8 +6,18 @@
     <link>https://noisewrangler.art/</link>
     <atom:link href="https://noisewrangler.art/feed.xml" rel="self" type="application/rss+xml" />
     <language>en-us</language>
-    <lastBuildDate>Sat, 11 Jul 2026 21:50:46 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 01 Nov 2026 20:26:58 GMT</lastBuildDate>
     <generator>Noise Wrangler RSS Generator</generator>
+
+    <item>
+        <title>Now — November 2026</title>
+        <description>What Jean-Philippe Drecourt is working on — November 2026.</description>
+        <link>https://noisewrangler.art/now-2026-11.html</link>
+        <guid>https://noisewrangler.art/now-2026-11.html</guid>
+        <pubDate>Sun, 01 Nov 2026 12:00:00 GMT</pubDate>
+        <category>Now</category>
+        <enclosure url="https://noisewrangler.art/media/20241220_015_Barreiro-Improvised-AMAC_cred_VeraMarmelo.JPG" type="image/jpeg" length="0" />
+    </item>
 
     <item>
         <title>Now — July 2026</title>
