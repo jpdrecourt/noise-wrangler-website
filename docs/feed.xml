@@ -6,8 +6,18 @@
     <link>https://noisewrangler.art/</link>
     <atom:link href="https://noisewrangler.art/feed.xml" rel="self" type="application/rss+xml" />
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 Nov 2026 20:26:58 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 24 Nov 2026 09:58:12 GMT</lastBuildDate>
     <generator>Noise Wrangler RSS Generator</generator>
+
+    <item>
+        <title>Playable Ideas</title>
+        <description>Small toys for trying out musical ideas by hand. Each is a web implementation of one idea, with specs for AI agents.</description>
+        <link>https://noisewrangler.art/articles/playable-ideas/</link>
+        <guid>https://noisewrangler.art/articles/playable-ideas/</guid>
+        <pubDate>Tue, 24 Nov 2026 12:00:00 GMT</pubDate>
+        <category>Music</category>
+        <enclosure url="https://noisewrangler.art/media/playable-ideas-square.png" type="image/jpeg" length="0" />
+    </item>
 
     <item>
         <title>Now — November 2026</title>
